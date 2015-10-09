@@ -149,8 +149,11 @@
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="CommandListener.h" />
     <ClInclude Include="DungeonCrawler.h" />
+    <ClInclude Include="DungeonGenerator.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="HelpCommand.h" />
+    <ClInclude Include="Room.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -159,8 +162,11 @@
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="CommandListener.cpp" />
     <ClCompile Include="DungeonCrawler.cpp" />
+    <ClCompile Include="DungeonGenerator.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="HelpCommand.cpp" />
+    <ClCompile Include="Room.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

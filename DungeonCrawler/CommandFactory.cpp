@@ -34,5 +34,6 @@ void CommandFactory::RunHelpCommand()
 void CommandFactory::Error()
 {
 	cout << "That command is not available. Type 'help' for a list of available commands." << endl;
+	cout << "" << endl;
 }
 

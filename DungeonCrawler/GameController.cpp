@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameController.h"
+#include "DungeonGenerator.h"
 #include <iostream>
 
 using namespace std;
@@ -7,6 +8,8 @@ using namespace std;
 GameController::GameController()
 {
 	if (Setup()) {
+		DungeonGenerator g = DungeonGenerator();
+		g.GenerateRooms(5, 5);
 		while (true) {
 			Run();
 		}

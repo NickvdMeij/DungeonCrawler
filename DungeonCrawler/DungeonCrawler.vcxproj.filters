@@ -51,6 +51,15 @@
     <ClInclude Include="HelpCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Room.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DungeonGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +82,15 @@
     </ClCompile>
     <ClCompile Include="HelpCommand.cpp">
       <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="DungeonGenerator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
