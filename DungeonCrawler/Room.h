@@ -41,8 +41,10 @@ public:
 	string GetDescripton();
 	vector<Enemy> GetEnemies();
 	void SetDoorway(Direction direction, Room room);
-	int getXPosition();
-	int getYPosition();
+	Room GetAdjecentRoom(Direction direction);
+	bool DoesRoomHaveDoorway(Direction direction);
+	int GetXPosition();
+	int GetYPosition();
 
 private:
 	map<Direction, Room> adjecentRooms;
