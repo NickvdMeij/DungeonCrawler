@@ -45,6 +45,27 @@ public:
 	bool DoesRoomHaveDoorway(Direction direction);
 	int GetXPosition();
 	int GetYPosition();
+	bool operator <(const Room& other)
+	{
+		if (xPosition < other.xPosition) {
+			return true;
+		}
+		return false;
+	}
+	bool operator >(const Room& other)
+	{
+		if (xPosition > other.xPosition) {
+			return true;
+		}
+		return false;
+	}
+	bool operator ==(const Room& other)
+	{
+		if (xPosition == other.xPosition && yPosition == other.yPosition) {
+			return true;
+		}
+		return false;
+	}
 
 private:
 	map<Direction, Room> adjecentRooms;

@@ -8,8 +8,7 @@ using namespace std;
 GameController::GameController()
 {
 	if (Setup()) {
-		DungeonGenerator g = DungeonGenerator();
-		g.GenerateRooms(5, 5);
+		
 		while (true) {
 			Run();
 		}
@@ -35,5 +34,7 @@ void GameController::Run()
 // Setup the game
 bool GameController::Setup()
 {
+	DungeonGenerator g = DungeonGenerator();
+	g.GenerateRooms(5, 5);
 	return true;
 }

@@ -47,9 +47,9 @@ Room Room::GetAdjecentRoom(Direction direction)
 
 bool Room::DoesRoomHaveDoorway(Direction direction)
 {
-	map<Direction, Room>::iterator it;
-	it = adjecentRooms.find(direction);
-	if (it != adjecentRooms.end()) {
+	auto combi = adjecentRooms.find(direction); 
+
+	if (combi != adjecentRooms.end()) {
 		return true;
 	}
 	return false;
