@@ -40,12 +40,28 @@ void Room::SetDoorway(Direction direction, Room room)
 	adjecentRooms[direction] = room;
 }
 
-int Room::getXPosition()
+Room Room::GetAdjecentRoom(Direction direction)
+{
+	return adjecentRooms[direction];
+}
+
+bool Room::DoesRoomHaveDoorway(Direction direction)
+{
+	auto combi = adjecentRooms.find(direction); 
+
+	if (combi != adjecentRooms.end()) {
+		return true;
+	}
+	return false;
+}
+
+int Room::GetXPosition()
 {
 	return xPosition;
 }
 
-int Room::getYPosition()
+int Room::GetYPosition()
 {
 	return yPosition;
 }
+
