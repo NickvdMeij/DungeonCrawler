@@ -50,8 +50,8 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 	deque<Room*> queue;
 	vector<Room*> visitedRooms;
 
-	uniform_int_distribution<int> distX{ 0, width - 1 };
-	uniform_int_distribution<int> distY{ 0, height - 1 };
+	uniform_int_distribution<int> distX{ 1, width - 2 };
+	uniform_int_distribution<int> distY{ 1, height - 2 };
 
 	int randomX = distX(defaultRandomEngine);
 	int randomY = distY(defaultRandomEngine);
@@ -112,18 +112,65 @@ vector<Room*> DungeonGenerator::GetAdjecentRooms(Room* room, int width, int heig
 	int roomX = room->GetXPosition();
 	int roomY = room->GetYPosition();
 
-	if (roomX < (width - 1)) {
-		adjecentRooms.push_back(&rooms[roomX + 1][roomY]);
+	uniform_int_distribution<int> distX{ 1, 4 };
+
+	int randomInt = distX(defaultRandomEngine);
+
+	switch (randomInt) {
+	case 1:
+		if (roomX < (width - 1)) {
+			adjecentRooms.push_back(&rooms[roomX + 1][roomY]);
+		}
+		if (roomY > 0) {
+			adjecentRooms.push_back(&rooms[roomX][roomY - 1]);
+		}
+		if (roomX > 0) {
+			adjecentRooms.push_back(&rooms[roomX - 1][roomY]);
+		}
+		if (roomY < (height - 1)) {
+			adjecentRooms.push_back(&rooms[roomX][roomY + 1]);
+		}
+	case 2:
+		if (roomX > 0) {
+			adjecentRooms.push_back(&rooms[roomX - 1][roomY]);
+		}
+		if (roomY > 0) {
+			adjecentRooms.push_back(&rooms[roomX][roomY - 1]);
+		}
+		if (roomY < (height - 1)) {
+			adjecentRooms.push_back(&rooms[roomX][roomY + 1]);
+		}
+		if (roomX < (width - 1)) {
+			adjecentRooms.push_back(&rooms[roomX + 1][roomY]);
+		}
+	case 3:
+		if (roomY < (height - 1)) {
+			adjecentRooms.push_back(&rooms[roomX][roomY + 1]);
+		}
+		if (roomX < (width - 1)) {
+			adjecentRooms.push_back(&rooms[roomX + 1][roomY]);
+		}
+		if (roomY > 0) {
+			adjecentRooms.push_back(&rooms[roomX][roomY - 1]);
+		}
+		if (roomX > 0) {
+			adjecentRooms.push_back(&rooms[roomX - 1][roomY]);
+		}
+	case 4:
+		if (roomX < (width - 1)) {
+			adjecentRooms.push_back(&rooms[roomX + 1][roomY]);
+		}
+		if (roomY > 0) {
+			adjecentRooms.push_back(&rooms[roomX][roomY - 1]);
+		}
+		if (roomY < (height - 1)) {
+			adjecentRooms.push_back(&rooms[roomX][roomY + 1]);
+		}
+		if (roomX > 0) {
+			adjecentRooms.push_back(&rooms[roomX - 1][roomY]);
+		}
 	}
-	if (roomX > 0) {
-		adjecentRooms.push_back(&rooms[roomX - 1][roomY]);
-	}
-	if (roomY < (height - 1)) {
-		adjecentRooms.push_back(&rooms[roomX][roomY + 1]);
-	}
-	if (roomY > 0) {
-		adjecentRooms.push_back(&rooms[roomX][roomY - 1]);
-	}
+	
 
 	return adjecentRooms;
 }
@@ -137,13 +184,7 @@ void DungeonGenerator::PrintDungeon(int width, int height)
 	{
 		for (int j = 0; j < height; j++)
 		{
-			/*if (rooms[i][j].DoesRoomHaveDoorway(Room::Direction::West)) {
-				cout << "-";
-			}
-			else {
-				cout << " ";
-			}*/
-			cout << "[]";
+			cout << "R";
 			if (rooms[j][i].DoesRoomHaveDoorway(Room::Direction::East)) {
 				cout << "-";
 			}
@@ -155,10 +196,10 @@ void DungeonGenerator::PrintDungeon(int width, int height)
 		for (int j = 0; j < height; j++)
 		{
 			if (rooms[j][i].DoesRoomHaveDoorway(Room::Direction::South)) {
-				cout << " |";
+				cout << "|";
 			}
 			else {
-				cout << "  ";
+				cout << " ";
 			}
 			cout << " ";
 		}

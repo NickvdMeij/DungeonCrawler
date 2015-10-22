@@ -7,6 +7,29 @@ using namespace std;
 
 class Room {
 
+public:
+	enum Direction {
+		North,
+		East,
+		South,
+		West
+	};
+	Room(int x, int y);
+	Room();
+	~Room();
+	string GetDescripton();
+	vector<Enemy> GetEnemies();
+	void SetDoorway(Direction direction, Room room);
+	Room GetAdjecentRoom(Direction direction);
+	bool DoesRoomHaveDoorway(Direction direction);
+	int GetXPosition();
+	int GetYPosition();
+	bool operator<(const Room& other);
+	bool operator>(const Room& other);
+	bool operator==(const Room& other);
+	bool operator!=(const Room& other);
+
+private:
 	enum Size {
 		Big,
 		Medium,
@@ -27,54 +50,11 @@ class Room {
 		Clean,
 		Messy
 	};
-
-public:
-	enum Direction {
-		North,
-		East,
-		South,
-		West
-	};
-	Room(int x, int y);
-	Room();
-	~Room();
-	string GetDescripton();
-	vector<Enemy> GetEnemies();
-	void SetDoorway(Direction direction, Room room);
-	Room GetAdjecentRoom(Direction direction);
-	bool DoesRoomHaveDoorway(Direction direction);
-	int GetXPosition();
-	int GetYPosition();
-	bool operator <(const Room& other)
-	{
-		if (xPosition < other.xPosition) {
-			return true;
-		}
-		return false;
-	}
-	bool operator >(const Room& other)
-	{
-		if (xPosition > other.xPosition) {
-			return true;
-		}
-		return false;
-	}
-	bool operator ==(const Room& other)
-	{
-		if (xPosition == other.xPosition && yPosition == other.yPosition) {
-			return true;
-		}
-		return false;
-	}
-
-private:
 	map<Direction, Room> adjecentRooms;
 	Atmosfeer atmosfeer;
 	Furniture furniture;
 	Lighting lighting;
 	Size size;
 	vector<Enemy> enemies;
-	int xPosition;
-	int yPosition;
-	
+	int xPosition, yPosition;
 };
