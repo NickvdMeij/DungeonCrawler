@@ -8,6 +8,26 @@ using namespace std;
 class Room {
 
 public:
+	enum Size {
+		Big,
+		Medium,
+		Small
+	};
+	enum Lighting {
+		Candle,
+		Fireplace,
+		Torch
+	};
+	enum Furniture {
+		Table,
+		Bed,
+		None
+	};
+	enum Atmosfeer {
+		Stinky,
+		Clean,
+		Messy
+	};
 	enum Direction {
 		North,
 		East,
@@ -19,7 +39,7 @@ public:
 	~Room();
 	string GetDescripton();
 	vector<Enemy> GetEnemies();
-	void SetDoorway(Direction direction, Room* room);
+	void SetDoorway(Direction direction, Room room);
 	Room GetAdjecentRoom(Direction direction);
 	bool DoesRoomHaveDoorway(Direction direction);
 	int GetXPosition();
@@ -28,9 +48,17 @@ public:
 	bool operator>(const Room& other);
 	bool operator==(const Room& other);
 	bool operator!=(const Room& other);
+	void setSize(Size s);
+	void setAtmosfeer(Atmosfeer a);
+	void setLighting(Lighting l );
+	void setFurniture(Furniture f);
 
 private:
 	map<Direction, Room> adjecentRooms;
 	vector<Enemy> enemies;
 	int xPosition, yPosition;
+	Atmosfeer atmosfeer;
+	Furniture furniture;
+	Lighting lighting;
+	Size size;
 };

@@ -1,17 +1,19 @@
 #pragma once
-#include "Array2D.h"
-#include <iostream>
+#include "Room.h"
+#include <random>
 using namespace std;
 
 class DungeonGenerator {
 private:
-	Array2D rooms;
+	Room** rooms;
+	random_device randomDevice;
+	default_random_engine defaultRandomEngine{ randomDevice() };
 public:
 	DungeonGenerator();
 	~DungeonGenerator();
-	void GenerateRooms(int width, int height);
-	void GenerateDoorways();
-	vector<Room*> GetAdjecentRooms(Room* room);
-	void PrintDungeon();
-	//Room** GenerateLevel(int level, int height, int width);
+	Room** GenerateRooms(int width, int height, int level);
+	void GenerateDoorways(int width, int height);
+	vector<Room*> GetAdjecentRooms(Room* room, int width, int height);
+	Room generateRandomRoom(int xPos, int yPos, int level);
+	//void PrintDungeon(int width, int height);
 };

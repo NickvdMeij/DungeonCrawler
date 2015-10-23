@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Room.h"
+#include "Array2D.h"
 
 #include <iostream>
 #include <sstream>
@@ -35,9 +35,9 @@ vector<Enemy> Room::GetEnemies()
 	return enemies;
 }
 
-void Room::SetDoorway(Direction direction, Room* room)
+void Room::SetDoorway(Direction direction, Room room)
 {
-	adjecentRooms[direction] = *room;
+	adjecentRooms[direction] = room;
 }
 
 Room Room::GetAdjecentRoom(Direction direction)
@@ -47,10 +47,13 @@ Room Room::GetAdjecentRoom(Direction direction)
 
 bool Room::DoesRoomHaveDoorway(Direction direction)
 {
-	auto combi = adjecentRooms.find(direction); 
+	if (adjecentRooms.size() > 0) {
+		auto combi = adjecentRooms.find(direction);
 
-	if (combi != adjecentRooms.end()) {
-		return true;
+		if (combi != adjecentRooms.end()) {
+			return true;
+		}
+		return false;
 	}
 	return false;
 }
@@ -95,4 +98,24 @@ bool Room::operator!=(const Room& other)
 		return true;
 	}
 	return false;
+}
+
+void Room::setSize(Size s)
+{
+	size = s;
+}
+
+void Room::setAtmosfeer(Atmosfeer a)
+{
+	atmosfeer = a;
+}
+
+void Room::setLighting(Lighting l)
+{
+	lighting = l;
+}
+
+void Room::setFurniture(Furniture f)
+{
+	furniture = f;
 }
