@@ -6,10 +6,10 @@ class Level {
 public:
 	Level(int width, int height, int floor);
 	~Level();
-	void setStartRoom(Room* room);
-	void setStairRoom(Room* room);
-	Room* getStartRoom();
-	Room* getStairRoom();
+	void setStartRoom(Room* room) { startRoom = room; }
+	void setStairRoom(Room* room) { stairRoom = room; }
+	Room* getStartRoom() { return startRoom; }
+	Room* getStairRoom() { return stairRoom; }
 	void printDungeon();
 private:
 	Array2D dungeon;

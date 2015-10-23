@@ -21,7 +21,7 @@ public:
 	enum Furniture {
 		Table,
 		Bed,
-		None
+		Seat
 	};
 	enum Atmosfeer {
 		Stinky,
@@ -42,16 +42,16 @@ public:
 	void SetDoorway(Direction direction, Room room);
 	Room GetAdjecentRoom(Direction direction);
 	bool DoesRoomHaveDoorway(Direction direction);
-	int GetXPosition();
-	int GetYPosition();
+	int GetXPosition() { return xPosition; }
+	int GetYPosition() { return yPosition; }
 	bool operator<(const Room& other);
 	bool operator>(const Room& other);
 	bool operator==(const Room& other);
 	bool operator!=(const Room& other);
-	void setSize(Size s);
-	void setAtmosfeer(Atmosfeer a);
-	void setLighting(Lighting l );
-	void setFurniture(Furniture f);
+	void setSize(Size s) { size = s; }
+	void setAtmosfeer(Atmosfeer a) { atmosfeer = a; }
+	void setLighting(Lighting l) { lighting = l; }
+	void setFurniture(Furniture f) { furniture = f; }
 
 private:
 	map<Direction, Room> adjecentRooms;

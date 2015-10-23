@@ -21,11 +21,6 @@ Room::~Room()
 
 string Room::GetDescripton()
 {
-	/*ostringstream oss;
-	oss << "Room position is " << xPosition << ":" << yPosition;
-	string& s = oss.str;
-	return s;*/
-
 	string s = string("Room position is ") + to_string(xPosition) + ":" + to_string(yPosition);
 	return s;
 }
@@ -58,16 +53,6 @@ bool Room::DoesRoomHaveDoorway(Direction direction)
 	return false;
 }
 
-int Room::GetXPosition()
-{
-	return xPosition;
-}
-
-int Room::GetYPosition()
-{
-	return yPosition;
-}
-
 bool Room::operator<(const Room & other)
 {
 	if (xPosition < other.xPosition) {
@@ -98,24 +83,4 @@ bool Room::operator!=(const Room& other)
 		return true;
 	}
 	return false;
-}
-
-void Room::setSize(Size s)
-{
-	size = s;
-}
-
-void Room::setAtmosfeer(Atmosfeer a)
-{
-	atmosfeer = a;
-}
-
-void Room::setLighting(Lighting l)
-{
-	lighting = l;
-}
-
-void Room::setFurniture(Furniture f)
-{
-	furniture = f;
 }

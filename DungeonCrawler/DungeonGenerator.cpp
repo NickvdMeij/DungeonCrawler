@@ -59,7 +59,7 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 	Room* start = &rooms[randomX][randomY];
 	queue.push_back(start);
 
-	cout << endl;
+	//cout << endl;
 	//cout << start->GetDescripton() << endl;
 
 	while (!queue.empty()) {
@@ -198,7 +198,7 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 		room.setFurniture(Room::Furniture::Bed);
 		break;
 	case 1:
-		room.setFurniture(Room::Furniture::None);
+		room.setFurniture(Room::Furniture::Seat);
 		break;
 	case 2:
 		room.setFurniture(Room::Furniture::Table);
