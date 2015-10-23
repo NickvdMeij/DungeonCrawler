@@ -9,7 +9,7 @@ Array2D::Array2D()
 	//cerr << "default construction\n";
 }
 
-Array2D::Array2D(size_t x_size, size_t y_size)
+Array2D::Array2D(int x_size, int y_size)
 	: x_size{ x_size }, y_size{ y_size }, p{ nullptr }
 {
 	//cerr << "preferred construction\n";
@@ -60,7 +60,7 @@ Array2D& Array2D::operator=(Array2D&& other)
 	return *this;
 }
 
-void Array2D::initArray2D(size_t x_size1, size_t y_size1)
+void Array2D::initArray2D(int x_size1, int y_size1)
 {
 	x_size = x_size1;
 	y_size = y_size1;
@@ -71,7 +71,7 @@ bool Array2D::operator==(const Array2D& other)
 {
 	if (other.x_size != x_size || other.y_size != y_size ) return false;
 	bool equal{ true };
-	for (size_t i{ 0 }; i < size(); ++i) {
+	for (int i{ 0 }; i < size(); ++i) {
 		if (other.p[i] != p[i]) {
 			equal = false;
 			break;
@@ -82,9 +82,9 @@ bool Array2D::operator==(const Array2D& other)
 
 void Array2D::init_storage(const Array2D& other)
 {
-	size_t sz{ size() };
+	int sz{ size() };
 	p = new Room[sz];
-	for (size_t i{ 0 }; i < sz; ++i) {
+	for (int i{ 0 }; i < sz; ++i) {
 		p[i] = other.p[i];
 	}
 }

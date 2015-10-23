@@ -35,9 +35,9 @@ vector<Enemy> Room::GetEnemies()
 	return enemies;
 }
 
-void Room::SetDoorway(Direction direction, Room room)
+void Room::SetDoorway(Direction direction, Room* room)
 {
-	adjecentRooms[direction] = room;
+	adjecentRooms[direction] = *room;
 }
 
 Room Room::GetAdjecentRoom(Direction direction)

@@ -19,7 +19,7 @@ public:
 	~Room();
 	string GetDescripton();
 	vector<Enemy> GetEnemies();
-	void SetDoorway(Direction direction, Room room);
+	void SetDoorway(Direction direction, Room* room);
 	Room GetAdjecentRoom(Direction direction);
 	bool DoesRoomHaveDoorway(Direction direction);
 	int GetXPosition();
@@ -30,31 +30,7 @@ public:
 	bool operator!=(const Room& other);
 
 private:
-	enum Size {
-		Big,
-		Medium,
-		Small
-	};
-	enum Lighting {
-		Candle,
-		Fireplace,
-		Torch
-	};
-	enum Furniture {
-		Table,
-		Bed,
-		None
-	};
-	enum Atmosfeer {
-		Stinky,
-		Clean,
-		Messy
-	};
 	map<Direction, Room> adjecentRooms;
-	Atmosfeer atmosfeer;
-	Furniture furniture;
-	Lighting lighting;
-	Size size;
 	vector<Enemy> enemies;
 	int xPosition, yPosition;
 };
