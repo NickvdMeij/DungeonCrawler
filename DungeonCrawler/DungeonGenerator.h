@@ -1,13 +1,11 @@
 #pragma once
 #include "Room.h"
-#include <random>
-using namespace std;
+#include "RandomInt.h"
 
 class DungeonGenerator {
 private:
 	Room** rooms;
-	random_device randomDevice;
-	default_random_engine defaultRandomEngine{ randomDevice() };
+	RandomInt rnd;
 public:
 	DungeonGenerator();
 	~DungeonGenerator();

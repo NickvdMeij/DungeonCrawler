@@ -49,11 +49,8 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 	deque<Room*> queue;
 	vector<Room*> visitedRooms;
 
-	uniform_int_distribution<int> distX{ 0, width - 1 };
-	uniform_int_distribution<int> distY{ 0, height - 1 };
-
-	int randomX = distX(defaultRandomEngine);
-	int randomY = distY(defaultRandomEngine);
+	int randomX = rnd.generateInt(0, width - 1);
+	int randomY = rnd.generateInt(0, height - 1);
 
 	//begin bij willekeurige kamer
 	Room* start = &rooms[randomX][randomY];
@@ -82,8 +79,7 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 				if (found2) {
 					//als kamer al bezocht is moet er toch een kans zijn dat er toch een doorway komt
 					int maxRoll = (width + height) / 2; //De kans is lager des te groter de dungeon
-					uniform_int_distribution<int> dist{ 0,  maxRoll - 2 };
-					makeDoorway = dist(defaultRandomEngine);
+					makeDoorway = rnd.generateInt(0, maxRoll - 2);
 				}
 				if (makeDoorway == 1) {
 					if (adjecent->GetXPosition() > room->GetXPosition()) {
@@ -150,12 +146,10 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 	Room room(xPos, yPos);
 
 	//0 tot 2 omdat je maar 3 opties zijn per kenmerk
-	uniform_int_distribution<int> dist{ 0, 2 };;
-
-	int randomSize = dist(defaultRandomEngine);
-	int randomLighting = dist(defaultRandomEngine);
-	int randomFurniture = dist(defaultRandomEngine);
-	int randomAtmosfeer = dist(defaultRandomEngine);
+	int randomSize = rnd.generateInt(0, 2);
+	int randomLighting = rnd.generateInt(0, 2);
+	int randomFurniture = rnd.generateInt(0, 2);
+	int randomAtmosfeer = rnd.generateInt(0, 2);
 
 	switch (randomSize) {
 	case 0:

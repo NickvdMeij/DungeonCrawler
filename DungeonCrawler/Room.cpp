@@ -9,10 +9,12 @@ Room::Room(int x, int y)
 {
 	xPosition = x;
 	yPosition = y;
+	visited = true;
 }
 
 Room::Room()
 {
+	visited = false;
 }
 
 Room::~Room()
@@ -44,7 +46,7 @@ bool Room::DoesRoomHaveDoorway(Direction direction)
 {
 	if (adjecentRooms.size() > 0) {
 		auto combi = adjecentRooms.find(direction);
-
+		
 		if (combi != adjecentRooms.end()) {
 			return true;
 		}
@@ -53,20 +55,20 @@ bool Room::DoesRoomHaveDoorway(Direction direction)
 	return false;
 }
 
-bool Room::operator<(const Room & other)
+Room & Room::operator=(const Room & other)
 {
-	if (xPosition < other.xPosition) {
-		return true;
+	if (this != &other) {
+		xPosition = other.xPosition;
+		yPosition = other.yPosition;
+		size = other.size;
+		lighting = other.lighting;
+		atmosfeer = other.atmosfeer;
+		furniture = other.furniture;
+		enemies = other.enemies;
+		adjecentRooms = other.adjecentRooms;
+		visited = other.visited;
 	}
-	return false;
-}
-
-bool Room::operator>(const Room & other)
-{
-	if (xPosition > other.xPosition) {
-		return true;
-	}
-	return false;
+	return *this;
 }
 
 bool Room::operator==(const Room & other)

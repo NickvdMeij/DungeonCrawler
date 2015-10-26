@@ -9,6 +9,8 @@ class Player
 public:
 	Player();
 	~Player();
+	void MoveDirection(Room::Direction direction);
+
 	void setName(string n) { name = n; }
 	string getName() { return name; }
 	void setHealthPoints(int i) { healthpoints = i; }
@@ -23,6 +25,8 @@ public:
 	int getDefence() { return defence; }
 	void setPerception(int p) { perception = p; }
 	int getPerception() { return perception; }
+	void setCurrentRoom(Room room) { currentRoom = room; }
+	Room getCurrentRoom() { return currentRoom; }
 private:
 	string name;
 	Room currentRoom;

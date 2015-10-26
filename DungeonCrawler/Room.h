@@ -45,19 +45,21 @@ public:
 	bool DoesRoomHaveDoorway(Direction direction);
 	int GetXPosition() { return xPosition; }
 	int GetYPosition() { return yPosition; }
-	bool operator<(const Room& other);
-	bool operator>(const Room& other);
+	Room& operator=(const Room& other);
 	bool operator==(const Room& other);
 	bool operator!=(const Room& other);
 	void setSize(Size s) { size = s; }
 	void setAtmosfeer(Atmosfeer a) { atmosfeer = a; }
 	void setLighting(Lighting l) { lighting = l; }
 	void setFurniture(Furniture f) { furniture = f; }
+	bool isVisited() { return visited; }
+	void visitRoom() { visited = true; }
 
 private:
 	map<Direction, Room> adjecentRooms;
 	vector<Enemy> enemies;
 	int xPosition, yPosition;
+	bool visited;
 	Atmosfeer atmosfeer;
 	Furniture furniture;
 	Lighting lighting;
