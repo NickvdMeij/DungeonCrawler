@@ -39,9 +39,6 @@
     <ClInclude Include="DungeonCrawler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CommandListener.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CommandFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -81,6 +78,9 @@
     <ClInclude Include="RandomInt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,9 +91,6 @@
     </ClCompile>
     <ClCompile Include="GameController.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CommandListener.cpp">
-      <Filter>Source Files\Commands</Filter>
     </ClCompile>
     <ClCompile Include="Command.cpp">
       <Filter>Source Files\Commands</Filter>
@@ -133,6 +130,9 @@
     </ClCompile>
     <ClCompile Include="RandomInt.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

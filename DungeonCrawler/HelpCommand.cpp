@@ -12,7 +12,7 @@ HelpCommand::~HelpCommand()
 {
 }
 
-void HelpCommand::Run()
+void HelpCommand::Run(list<string>* parameters, Game* game)
 {
 	cout << endl;
 	cout << "Help" << endl;

@@ -1,19 +1,12 @@
 #include "stdafx.h"
 #include "GameController.h"
-#include "DungeonGenerator.h"
-#include "LevelFactory.h"
-#include "Player.h"
-#include <iostream>
-
-using namespace std;
 
 GameController::GameController()
 {
-	if (Setup()) {
-		
-		while (true) {
-			Run();
-		}
+	game = new Game();
+
+	while (true) {
+		Run();
 	}
 }
 
@@ -22,25 +15,50 @@ GameController::~GameController()
 {
 }
 
-
 // Run the gameloop
 void GameController::Run()
 {
 	// handle events
 	// move enemies
 	// 
-	GameController::CommandListener.Listen();
+	std::cout << game->getPlayer()->getCurrentRoom().GetXPosition() << " - " << game->getPlayer()->getCurrentRoom().GetYPosition() << std::endl;
+	Listen();
 }
 
-
-// Setup the game
-bool GameController::Setup()
+void GameController::Listen()
 {
-	LevelFactory *levelFactory = LevelFactory::Instance();
-	Level* currentLevel = levelFactory->FirstLevel();
+	std::string s;
 
-	Player player;
-	player.setCurrentRoom(currentLevel->getStartRoom());
+	cout << "Please give a command (type help for a list of commands): " << endl;
+	getline(cin,s);
 
-	return true;
+	cout << s;
+
+	list<string>* parameters = new list<string>();
+
+	std::string delimiter = " ";
+
+	s += " endLine";
+
+	size_t pos = 0;
+	bool first = true;
+	std::string token;
+	std::string command;
+	while ((pos = s.find(delimiter)) != std::string::npos) {
+		
+		token = s.substr(0, pos);
+
+		if (first) {
+			command = token;
+			first = false;
+		}
+		else
+		{
+			parameters->push_back(token);
+		}
+
+		s.erase(0, pos + delimiter.length());
+	}
+
+	commandFactory.CreateCommand(command, parameters, game);
 }

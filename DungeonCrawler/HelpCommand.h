@@ -1,12 +1,11 @@
 #pragma once
-
 #include "Command.h"
 
-class HelpCommand : Command
+class HelpCommand : public Command
 {
 public:
 	HelpCommand();
 	~HelpCommand();
-	void Run();
+	void Run(list<string>* parameters, Game* game);
 };
 

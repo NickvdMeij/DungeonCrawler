@@ -2,22 +2,19 @@
 
 #include <string>
 #include <map>
+#include <list>
+#include "Game.h"
+#include "Command.h"
 
 using namespace std;
 class CommandFactory
 {
-	enum CommandString {
-		error,
-		help
-	};
 
 private:
-	void RunHelpCommand();
-	void Error();
-	map<string, CommandString> stringMap;
+	map<string, Command*> mapping;
 public:
 	CommandFactory();
 	~CommandFactory();
-	void CreateCommand(string commandString);
+	void CreateCommand(string commandString, list<string>* parameters, Game* game);
 };
 

@@ -1,16 +1,19 @@
 #pragma once
-#include "CommandListener.h"
+#include "Game.h"
+#include "CommandFactory.h"
 
 class GameController
 {
 public:
 	GameController();
 	~GameController();
-	// Run the gameloop
-	void Run();
+
+
 private:
-	CommandListener CommandListener;
-	// Setup the game
-	bool Setup();
+	CommandFactory commandFactory;;
+	Game* game;
+	void Listen();
+	void Run();
+
 };
 

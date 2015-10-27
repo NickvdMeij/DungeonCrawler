@@ -12,7 +12,6 @@ Command::~Command()
 {
 }
 
-void Command::Run()
+void Command::Run(list<string>* parameters, Game * game)
 {
-	cout << "Command" << endl;
 }

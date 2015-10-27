@@ -1,9 +1,12 @@
 #pragma once
+#include <list>
+#include "Game.h"
+
 class Command
 {
 public:
 	Command();
 	~Command();
-	void Run();
+	virtual void Run(list<string>* parameters, Game* game);
 };
 

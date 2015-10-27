@@ -148,10 +148,10 @@
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandFactory.h" />
-    <ClInclude Include="CommandListener.h" />
     <ClInclude Include="DungeonCrawler.h" />
     <ClInclude Include="DungeonGenerator.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="HelpCommand.h" />
     <ClInclude Include="Inventory.h" />
@@ -168,10 +168,10 @@
     <ClCompile Include="Array2D.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
-    <ClCompile Include="CommandListener.cpp" />
     <ClCompile Include="DungeonCrawler.cpp" />
     <ClCompile Include="DungeonGenerator.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="HelpCommand.cpp" />
     <ClCompile Include="Inventory.cpp" />

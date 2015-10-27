@@ -6,8 +6,8 @@
 
 CommandFactory::CommandFactory()
 {
-	stringMap["error"] = CommandString::error;
-	stringMap["help"] = CommandString::help;
+	mapping["help"] = new HelpCommand();
+
 }
 
 
@@ -15,25 +15,14 @@ CommandFactory::~CommandFactory()
 {
 }
 
-void CommandFactory::CreateCommand(string commandString)
-{
-	CommandString string = stringMap[commandString];
 
-	switch (string) {
-		default: Error(); break;
-		case help: RunHelpCommand(); break;
+void CommandFactory::CreateCommand(string commandString, list<string>* parameters, Game* game)
+{
+	if (mapping[commandString]) {
+		return mapping[commandString]->Run(parameters, game);
 	}
-}
-
-void CommandFactory::RunHelpCommand()
-{
-	HelpCommand* helpCommand = new HelpCommand();
-	helpCommand->Run();
-}
-
-void CommandFactory::Error()
-{
-	cout << "That command is not available. Type 'help' for a list of available commands." << endl;
-	cout << "" << endl;
+	else {
+		cout << "That command is not available, please pick another command or type 'help' for a list with available commands";
+	}
 }
 
