@@ -153,6 +153,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
+    <ClInclude Include="GoCommand.h" />
     <ClInclude Include="HelpCommand.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameController.cpp" />
+    <ClCompile Include="GoCommand.cpp" />
     <ClCompile Include="HelpCommand.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />

@@ -2,11 +2,13 @@
 #include "CommandFactory.h"
 #include <map>
 #include "HelpCommand.h"
+#include "GoCommand.h"
 #include <iostream>
 
 CommandFactory::CommandFactory()
 {
 	mapping["help"] = new HelpCommand();
+	mapping["go"] = new GoCommand();
 
 }
 

@@ -93,6 +93,9 @@
     <ClInclude Include="ItemFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GoCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -154,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="ItemFactory.cpp">
       <Filter>Source Files\Models\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="GoCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
