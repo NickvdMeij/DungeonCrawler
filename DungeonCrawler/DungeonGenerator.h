@@ -1,17 +1,17 @@
 #pragma once
 #include "Room.h"
-#include <iostream>
-using namespace std;
+#include "RandomInt.h"
 
 class DungeonGenerator {
 private:
 	Room** rooms;
+	RandomInt rnd;
 public:
 	DungeonGenerator();
 	~DungeonGenerator();
-	void GenerateRooms(int width, int height);
+	Room** GenerateRooms(int width, int height, int level);
 	void GenerateDoorways(int width, int height);
 	vector<Room*> GetAdjecentRooms(Room* room, int width, int height);
-	void PrintDungeon(int width, int height);
-	//Room** GenerateLevel(int level, int height, int width);
+	Room generateRandomRoom(int xPos, int yPos, int level);
+	//void PrintDungeon(int width, int height);
 };

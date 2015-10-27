@@ -5,11 +5,8 @@
 #include <queue>
 #include <set>
 #include <vector>
-#include <random>
-using namespace std;
 
-random_device randomDevice;
-default_random_engine defaultRandomEngine{ randomDevice() };
+using namespace std;
 
 DungeonGenerator::DungeonGenerator()
 {
@@ -19,29 +16,31 @@ DungeonGenerator::~DungeonGenerator()
 {
 }
 
-void DungeonGenerator::GenerateRooms(int width, int height)
+Room** DungeonGenerator::GenerateRooms(int width, int height, int level)
 {
 	rooms = new Room*[width];
-	for (int i = 0; i < width; i++) {
-		rooms[i] = new Room[height];
+	for (int x = 0; x < width; x++) {
+		rooms[x] = new Room[height];
 	}
 
-	for(int i = 0; i < width; i++) {
-		for (int j = 0; j < height; j++) {
-			rooms[i][j] = Room(i, j);
+	for (int x = 0; x < width; x++) {
+		for (int y = 0; y < height; y++) {
+			rooms[x][y] = generateRandomRoom(x, y, level);
 		}
 	}
 
 	//tijdelijke prints
 	/*for (int i = 0; i < width; i++)
 	{
-		for (int j = 0; j < height; j++)
-		{
-			cout << rooms[i][j].GetDescripton() << endl;
-		}
+	for (int j = 0; j < height; j++)
+	{
+	cout << rooms[i][j].GetDescripton() << endl;
+	}
 	}*/
 
 	GenerateDoorways(width, height);
+
+	return rooms;
 }
 
 //methode heeft nog aardig wat c++ errors
@@ -50,18 +49,15 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 	deque<Room*> queue;
 	vector<Room*> visitedRooms;
 
-	uniform_int_distribution<int> distX{ 0, width - 1 };
-	uniform_int_distribution<int> distY{ 0, height - 1 };
-
-	int randomX = distX(defaultRandomEngine);
-	int randomY = distY(defaultRandomEngine);
+	int randomX = rnd.generateInt(0, width - 1);
+	int randomY = rnd.generateInt(0, height - 1);
 
 	//begin bij willekeurige kamer
 	Room* start = &rooms[randomX][randomY];
 	queue.push_back(start);
 
-	cout << endl;
-	cout << start->GetDescripton() << endl;
+	//cout << endl;
+	//cout << start->GetDescripton() << endl;
 
 	while (!queue.empty()) {
 		Room* room = queue.front();
@@ -81,9 +77,9 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 				//als kamer rechts van huidige kamer is
 				int makeDoorway = 1;
 				if (found2) {
-					//als kamer al bezocht is moet het 25% kans zijn dat er toch een doorway komt
-					uniform_int_distribution<int> dist{ 0,  3 };
-					makeDoorway = dist(defaultRandomEngine);
+					//als kamer al bezocht is moet er toch een kans zijn dat er toch een doorway komt
+					int maxRoll = (width + height) / 2; //De kans is lager des te groter de dungeon
+					makeDoorway = rnd.generateInt(0, maxRoll - 2);
 				}
 				if (makeDoorway == 1) {
 					if (adjecent->GetXPosition() > room->GetXPosition()) {
@@ -106,14 +102,14 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 						adjecent->SetDoorway(Room::Direction::South, *room);
 					}
 				}
-				
+
 				//zet kamer op queue
 				queue.push_back(adjecent);
 			}
 		}
 	}
 
-	PrintDungeon(width, height);
+	//PrintDungeon(width, height);
 }
 
 
@@ -141,38 +137,103 @@ vector<Room*> DungeonGenerator::GetAdjecentRooms(Room* room, int width, int heig
 	if (roomY > 0 && !north) {
 		adjecentRooms.push_back(&rooms[roomX][roomY - 1]);
 	}
-	
+
 	return adjecentRooms;
 }
 
-void DungeonGenerator::PrintDungeon(int width, int height)
+Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 {
-	//tijdelijk print
-	cout << "Dungeon map: " << endl;
+	Room room(xPos, yPos);
 
-	for (int i = 0; i < width; i++)
-	{
-		for (int j = 0; j < height; j++)
-		{
-			cout << "[]";
-			if (rooms[j][i].DoesRoomHaveDoorway(Room::Direction::East)) {
-				cout << "-";
-			}
-			else {
-				cout << " ";
-			}
-		}
-		cout << endl;
-		for (int j = 0; j < height; j++)
-		{
-			if (rooms[j][i].DoesRoomHaveDoorway(Room::Direction::South)) {
-				cout << " |";
-			}
-			else {
-				cout << "  ";
-			}
-			cout << " ";
-		}
-		cout << endl;
+	//0 tot 2 omdat je maar 3 opties zijn per kenmerk
+	int randomSize = rnd.generateInt(0, 2);
+	int randomLighting = rnd.generateInt(0, 2);
+	int randomFurniture = rnd.generateInt(0, 2);
+	int randomAtmosfeer = rnd.generateInt(0, 2);
+
+	switch (randomSize) {
+	case 0:
+		room.setSize(Room::Size::Small);
+		break;
+	case 1:
+		room.setSize(Room::Size::Medium);
+		break;
+	case 2:
+		room.setSize(Room::Size::Big);
+		break;
 	}
+
+	switch (randomLighting) {
+	case 0:
+		room.setLighting(Room::Lighting::Candle);
+		break;
+	case 1:
+		room.setLighting(Room::Lighting::Fireplace);
+		break;
+	case 2:
+		room.setLighting(Room::Lighting::Torch);
+		break;
+	}
+
+	switch (randomAtmosfeer) {
+	case 0:
+		room.setAtmosfeer(Room::Atmosfeer::Clean);
+		break;
+	case 1:
+		room.setAtmosfeer(Room::Atmosfeer::Messy);
+		break;
+	case 2:
+		room.setAtmosfeer(Room::Atmosfeer::Stinky);
+		break;
+	}
+
+	switch (randomFurniture) {
+	case 0:
+		room.setFurniture(Room::Furniture::Bed);
+		break;
+	case 1:
+		room.setFurniture(Room::Furniture::Seat);
+		break;
+	case 2:
+		room.setFurniture(Room::Furniture::Table);
+		break;
+	}
+
+	///-------TODO------------///
+	//Enemies genereren afhankelijk van level
+
+	return room;
+
 }
+
+//void DungeonGenerator::PrintDungeon(int width, int height)
+//{
+//	//tijdelijk print
+//	cout << "Dungeon map: " << endl;
+//
+//	for (int y = 0; y < height; y++)
+//	{
+//		for (int x = 0; x < width; x++)
+//		{
+//			cout << "[]";
+//			if (rooms[x][y].DoesRoomHaveDoorway(Room::Direction::East)) {
+//				cout << "-";
+//			}
+//			else {
+//				cout << " ";
+//			}
+//		}
+//		cout << endl;
+//		for (int x = 0; x < width; x++)
+//		{
+//			if (rooms[x][y].DoesRoomHaveDoorway(Room::Direction::South)) {
+//				cout << " |";
+//			}
+//			else {
+//				cout << "  ";
+//			}
+//			cout << " ";
+//		}
+//		cout << endl;
+//	}
+//}

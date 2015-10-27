@@ -1,16 +1,26 @@
 #pragma once
 #include "Array2D.h"
+#include "DungeonGenerator.h"
 
 class Level {
-public:
-	Level();
-	~Level();
-	void setStartRoom(Room* room);
-	void setStairRoom(Room* room);
-	Room* getStartRoom();
-	Room* getStairRoom();
+
 private:
-	
-	Room* startRoom;
-	Room* stairRoom;
+	Array2D dungeon;
+	int width, height, floor;
+	Room startRoom;
+	Room stairRoom;
+	RandomInt rnd;
+public:
+	Level(int width, int height, int floor);
+	Level() {}
+	Level(const Level& other);
+	~Level();
+	Level& operator=(const Level& other); // copy assignment
+	void chooseStartRoom();
+	void setStartRoom(Room room) { startRoom = room; }
+	void setStairRoom(Room room) { stairRoom = room; }
+	Room getStartRoom() { return startRoom; }
+	Room getStairRoom() { return stairRoom; }
+	int getFloor() { return floor; }
+	void printDungeon();
 };
