@@ -18,11 +18,12 @@ GameController::~GameController()
 // Run the gameloop
 void GameController::Run()
 {
-	// handle events
+	
+	Listen();
+	// game update
+	// handle World Events
 	// move enemies
 	// 
-	std::cout << game->getPlayer()->getCurrentRoom().GetXPosition() << " - " << game->getPlayer()->getCurrentRoom().GetYPosition() << std::endl;
-	Listen();
 }
 
 void GameController::Listen()
@@ -31,8 +32,6 @@ void GameController::Listen()
 
 	cout << "Please give a command (type help for a list of commands): " << endl;
 	getline(cin,s);
-
-	cout << s;
 
 	list<string>* parameters = new list<string>();
 

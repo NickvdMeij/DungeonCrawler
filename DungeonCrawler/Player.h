@@ -2,6 +2,9 @@
 #include "Room.h"
 #include "Inventory.h"
 #include <iostream>
+#include "Weapon.h"
+#include "Shield.h"
+
 using namespace std;
 
 class Player
@@ -27,7 +30,16 @@ public:
 	int getPerception() { return perception; }
 	void setCurrentRoom(Room room) { currentRoom = room; }
 	Room getCurrentRoom() { return currentRoom; }
+	Inventory getInventory() { return inventory; }
+	Weapon getMainHand() { return mainHand; }
+	Shield getOffHand() { return offHand; }
+	void setMainHand(Weapon weapon) { mainHand = weapon; }
+	void setOffHand(Shield shield) { offHand = shield; }
+	void Equip(Weapon weapon);
+	void Equip(Shield shield);
 private:
+	Weapon mainHand;
+	Shield offHand;
 	string name;
 	Room currentRoom;
 	int healthpoints, level, experience, attack, defence, perception;

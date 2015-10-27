@@ -7,9 +7,14 @@ class Item
 public:
 	Item();
 	~Item();
-	void setName(string n) { name = n; }
+	void setName(string s) { name = s; }
 	string getName() { return name; }
-private:
-	string name;
+	void setDescription(string s) { description = s; }
+	string setDescription() { return description; }
+	int getId() { return id; }
+	void setId(int i) { id = i; };
+protected:
+	int id;
+	string name, description;
 };
 

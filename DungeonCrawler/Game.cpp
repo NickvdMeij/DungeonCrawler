@@ -1,12 +1,15 @@
 #include "stdafx.h"
 #include "Game.h"
 #include "LevelFactory.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include "ItemFactory.h"
 
 
 Game::Game()
 {
 	InitialSetup();
-
 }
 
 
@@ -24,5 +27,7 @@ void Game::InitialSetup()
 	level = LevelFactory::Instance()->FirstLevel();
 	player = new Player();
 	player->setCurrentRoom(level->getStartRoom());
+
+	ItemFactory::GetInstance()->CreateItem("test");
 }
 
