@@ -1,0 +1,11 @@
+// name - base damage - crit chance - miss chance
+Axe 10 5 10
+Sword 5 15 10
+Staff 20 0 10
+Pistol 50 5 20
+Dart 10 5 10
+Knife 5 5 10
+Whip 15 10 10
+Crossbow 15 10 10
+Torch 5 5 5
+NooBTuBe 100 100 0
