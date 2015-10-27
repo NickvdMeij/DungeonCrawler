@@ -10,6 +10,7 @@ public:
 	Game();
 	~Game();
 	Player* getPlayer();
+	Level* getLevel();
 private:
 	Level* level;
 	Player* player;

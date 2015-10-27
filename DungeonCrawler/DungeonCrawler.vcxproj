@@ -160,6 +160,7 @@
     <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelFactory.h" />
+    <ClInclude Include="MapCommand.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomInt.h" />
     <ClInclude Include="Room.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="ItemFactory.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelFactory.cpp" />
+    <ClCompile Include="MapCommand.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomInt.cpp" />
     <ClCompile Include="Room.cpp" />

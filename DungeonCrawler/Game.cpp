@@ -22,11 +22,17 @@ Player* Game::getPlayer()
 	return player;
 }
 
+Level * Game::getLevel()
+{
+	return level;
+}
+
 void Game::InitialSetup()
 {
 	level = LevelFactory::Instance()->FirstLevel();
 	player = new Player();
 	player->setCurrentRoom(level->getStartRoom());
+	player->getCurrentRoom().visitRoom();
 
 	ItemFactory::GetInstance()->CreateItem("test");
 }
