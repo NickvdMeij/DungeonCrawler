@@ -14,7 +14,8 @@ Player::~Player()
 void Player::MoveDirection(Room::Direction direction)
 {
 	if (currentRoom.DoesRoomHaveDoorway(direction)) {
-		currentRoom = currentRoom.GetAdjecentRoom(direction);
+		setCurrentRoom(*currentRoom.GetAdjecentRoom(direction));
+		cout << "You entered the next room." << endl;
 	}
 	else {
 		cout << "No room in that direction!" << endl;

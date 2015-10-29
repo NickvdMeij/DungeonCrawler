@@ -23,7 +23,6 @@ void GoCommand::Run(list<string>* parameters, Game* game)
 	if (it != directions.end()) {
 		d = it->second;
 		game->getPlayer()->MoveDirection(d);
-		cout << "You entered the next room." << endl;
 	}
 	else {
 		cout << "Second part of command is unknown." << endl;

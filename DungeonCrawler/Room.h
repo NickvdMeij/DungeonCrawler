@@ -37,11 +37,12 @@ public:
 	};
 	Room(int x, int y);
 	Room();
+	Room(const Room& other); // copy constructor
 	~Room();
 	string GetDescripton();
 	vector<Enemy> GetEnemies();
-	void SetDoorway(Direction direction, Room room);
-	Room GetAdjecentRoom(Direction direction);
+	void SetDoorway(Direction direction, Room* room);
+	Room* GetAdjecentRoom(Direction direction);
 	bool DoesRoomHaveDoorway(Direction direction);
 	int GetXPosition() { return xPosition; }
 	int GetYPosition() { return yPosition; }
@@ -53,10 +54,10 @@ public:
 	void setLighting(Lighting l) { lighting = l; }
 	void setFurniture(Furniture f) { furniture = f; }
 	bool isVisited() { return visited; }
-	void visitRoom() { visited = true; }
+	void visitRoom();
 
 private:
-	map<Direction, Room> adjecentRooms;
+	map<Direction, Room*> adjecentRooms;
 	vector<Enemy> enemies;
 	int xPosition, yPosition;
 	bool visited;

@@ -83,23 +83,23 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 				}
 				if (makeDoorway == 1) {
 					if (adjecent->GetXPosition() > room->GetXPosition()) {
-						room->SetDoorway(Room::Direction::East, *adjecent);
-						adjecent->SetDoorway(Room::Direction::West, *room);
+						room->SetDoorway(Room::Direction::East, adjecent);
+						adjecent->SetDoorway(Room::Direction::West, room);
 					}
 					//als kamer links van huidige kamer is
 					if (adjecent->GetXPosition() < room->GetXPosition()) {
-						room->SetDoorway(Room::Direction::West, *adjecent);
-						adjecent->SetDoorway(Room::Direction::East, *room);
+						room->SetDoorway(Room::Direction::West, adjecent);
+						adjecent->SetDoorway(Room::Direction::East, room);
 					}
 					//als kamer onder de huidige kamer is
 					if (adjecent->GetYPosition() > room->GetYPosition()) {
-						room->SetDoorway(Room::Direction::South, *adjecent);
-						adjecent->SetDoorway(Room::Direction::North, *room);
+						room->SetDoorway(Room::Direction::South, adjecent);
+						adjecent->SetDoorway(Room::Direction::North, room);
 					}
 					//als kamer boven de huidige kamer is
 					if (adjecent->GetYPosition() < room->GetYPosition()) {
-						room->SetDoorway(Room::Direction::North, *adjecent);
-						adjecent->SetDoorway(Room::Direction::South, *room);
+						room->SetDoorway(Room::Direction::North, adjecent);
+						adjecent->SetDoorway(Room::Direction::South, room);
 					}
 				}
 

@@ -17,6 +17,20 @@ Room::Room()
 	visited = false;
 }
 
+Room::Room(const Room & other)
+{
+	//cout << "room copy constructor" << endl;
+	xPosition = other.xPosition;
+	yPosition = other.yPosition;
+	adjecentRooms = other.adjecentRooms;
+	enemies = other.enemies;
+	visited = other.visited;
+	lighting = other.lighting;
+	size = other.size;
+	atmosfeer = other.atmosfeer;
+	furniture = other.furniture;
+}
+
 Room::~Room()
 {
 }
@@ -32,12 +46,12 @@ vector<Enemy> Room::GetEnemies()
 	return enemies;
 }
 
-void Room::SetDoorway(Direction direction, Room room)
+void Room::SetDoorway(Direction direction, Room* room)
 {
 	adjecentRooms[direction] = room;
 }
 
-Room Room::GetAdjecentRoom(Direction direction)
+Room* Room::GetAdjecentRoom(Direction direction)
 {
 	return adjecentRooms[direction];
 }
@@ -85,4 +99,9 @@ bool Room::operator!=(const Room& other)
 		return true;
 	}
 	return false;
+}
+
+void Room::visitRoom()
+{
+	visited = true;
 }

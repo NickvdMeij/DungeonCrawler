@@ -57,7 +57,7 @@ void Level::chooseStartRoom()
 	int randomY = rnd.generateInt(0, height - 1);
 
 	//begin bij willekeurige kamer
-	startRoom = dungeon.get(randomX, randomY);
+	setStartRoom(dungeon.get(randomX, randomY));
 }
 
 void Level::printDungeon()

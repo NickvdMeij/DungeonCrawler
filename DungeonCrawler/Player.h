@@ -28,7 +28,7 @@ public:
 	int getDefence() { return defence; }
 	void setPerception(int p) { perception = p; }
 	int getPerception() { return perception; }
-	void setCurrentRoom(Room room) { currentRoom = room; }
+	void setCurrentRoom(Room& room) { currentRoom = room; }
 	Room getCurrentRoom() { return currentRoom; }
 	Inventory getInventory() { return inventory; }
 	Weapon getMainHand() { return mainHand; }
