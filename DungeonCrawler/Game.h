@@ -14,7 +14,6 @@ private:
 	Level* level;
 	Player* player;
 	std::list<Enemy*> enemies;
-
 	void InitialSetup();
 };
 

@@ -21,19 +21,34 @@ void Player::MoveDirection(Room::Direction direction)
 	}
 }
 
-void Player::Equip(Weapon weapon)
+void Player::Equip(Weapon* weapon)
 {
-	if (inventory.hasItem(weapon)) {
-		inventory.removeItem(weapon);
+	if (inventory.hasItem(*weapon)) {
+		inventory.removeItem(*weapon);
 		setMainHand(weapon);
 	}
 }
 
-void Player::Equip(Shield shield)
+void Player::Equip(Shield* shield)
 {
-	if (inventory.hasItem(shield)) {
-		inventory.removeItem(shield);
+	if (inventory.hasItem(*shield)) {
+		inventory.removeItem(*shield);
 		setOffHand(shield);
+	}
+}
+
+void Player::TakeDamage(int amount) {
+	if (!offHand->Block()) {
+		if (amount > offHand->getDefence()) {
+			std::cout << "You lost " << (amount - offHand->getDefence()) << "hp" << endl;
+			currentHealth = currentHealth - (amount - offHand->getDefence());
+		}
+		else {
+			std::cout << "HAHA, this enemy is so weak that you didnt recieve any damage!" << endl;
+		}
+	}
+	else {
+		std::cout << "Attack blocked by your shield!" << endl;
 	}
 }
 

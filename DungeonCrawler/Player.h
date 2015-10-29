@@ -16,33 +16,30 @@ public:
 
 	void setName(string n) { name = n; }
 	string getName() { return name; }
-	void setHealthPoints(int i) { healthpoints = i; }
-	int getHealthPoints() { return healthpoints; }
+	void setCurrentHealth(int i) { currentHealth = i; }
+	int getCurrentHealth() { return currentHealth; }
+	void setTotalHealth(int i) { totalHealth = i; }
+	int getTotalHealth() { return totalHealth; }
 	void setLevel(int l) { level = l; }
 	int getLevel() { return level; }
 	void setExperience(int e) { experience = e; }
 	int getExperience() { return experience; }
-	void setAttack(int a) { attack = a; }
-	int getAttack() { return attack; }
-	void setDefence(int d) { defence = d; }
-	int getDefence() { return defence; }
-	void setPerception(int p) { perception = p; }
-	int getPerception() { return perception; }
 	void setCurrentRoom(Room room) { currentRoom = room; }
 	Room getCurrentRoom() { return currentRoom; }
 	Inventory getInventory() { return inventory; }
-	Weapon getMainHand() { return mainHand; }
-	Shield getOffHand() { return offHand; }
-	void setMainHand(Weapon weapon) { mainHand = weapon; }
-	void setOffHand(Shield shield) { offHand = shield; }
-	void Equip(Weapon weapon);
-	void Equip(Shield shield);
+	Weapon* getMainHand() { return mainHand; }
+	Shield* getOffHand() { return offHand; }
+	void setMainHand(Weapon* weapon) { mainHand = weapon; }
+	void setOffHand(Shield* shield) { offHand = shield; }
+	void Equip(Weapon* weapon);
+	void Equip(Shield* shield);
+	void TakeDamage(int amount);
 private:
-	Weapon mainHand;
-	Shield offHand;
+	Weapon* mainHand;
+	Shield* offHand;
 	string name;
 	Room currentRoom;
-	int healthpoints, level, experience, attack, defence, perception;
+	int totalHealth, currentHealth, level, experience;
 	Inventory inventory;
 };
 

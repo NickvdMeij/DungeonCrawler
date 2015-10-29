@@ -25,9 +25,21 @@ Player* Game::getPlayer()
 void Game::InitialSetup()
 {
 	level = LevelFactory::Instance()->FirstLevel();
+
+	ItemFactory* itemFactory = new ItemFactory();
+	Weapon w = itemFactory->CreateWeapon(1);
+	Shield s = itemFactory->CreateShield(1);
+	
 	player = new Player();
 	player->setCurrentRoom(level->getStartRoom());
+	player->setLevel(1);
+	player->setCurrentHealth(100);
+	player->setTotalHealth(200);
+	player->setExperience(0);
+	player->setName("Derp");
+	player->setMainHand(&w);
+	player->setOffHand(&s);
 
-	ItemFactory::GetInstance()->CreateItem("test");
+	player->TakeDamage(player->getMainHand()->getDamage());	
 }
 

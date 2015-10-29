@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "RandomInt.h"
+#include "Game.h"
 
 ItemFactory::ItemFactory()
 {
@@ -15,10 +17,25 @@ ItemFactory::~ItemFactory()
 {
 }
 
-Item ItemFactory::CreateItem(string type)
+Weapon ItemFactory::CreateWeapon(int level)
 {
-	Item* item = new Item();
-	return *item;
+	int random = RandomInt::generateInt(0, weapons.size());
+	Weapon w = weapons[random];
+
+	w.setLevel(level);
+
+	return w;
+}
+
+Shield ItemFactory::CreateShield(int level)
+{
+	int random = RandomInt::generateInt(0, shields.size());
+
+	Shield s = shields[random];
+
+	s.setLevel(level);
+
+	return s;
 }
 
 void ItemFactory::readWeaponsFile()
@@ -28,17 +45,19 @@ void ItemFactory::readWeaponsFile()
 	ifstream input_file{ textfile };
 
 	string line, weaponName;
-	int baseDamage, critChance, missChange;
+	int baseDamage, critChance, missChance;
 
 	while (getline(input_file, line)) {
-		input_file >> weaponName >> baseDamage >> critChance >> missChange;
+		input_file >> weaponName >> baseDamage >> critChance >> missChance;
 
-		//cout << weaponName << " " << baseDamage << " " << critChance << " " << missChange << endl;
+		Weapon* w = new Weapon();
+		w->setBaseDamage(baseDamage);
+		w->setCriticalChance(critChance);
+		w->setMissChance(missChance);
+		w->setName(weaponName);
+
+		weapons.push_back(*w);
 	}
-
-	
-
-
 }
 
 void ItemFactory::readShieldsFile()
@@ -47,12 +66,17 @@ void ItemFactory::readShieldsFile()
 
 	ifstream input_file{ textfile };
 
-	string line, weaponName;
-	int baseDamage, critChance, missChange;
+	string line, shieldName;
+	int baseDefence, blockChance;
 
 	while (getline(input_file, line)) {
-		input_file >> weaponName >> baseDamage >> critChance >> missChange;
+		input_file >> shieldName >> baseDefence >> blockChance;
 
-		//cout << weaponName << " " << baseDamage << " " << critChance << " " << missChange << endl;
+		Shield* s = new Shield();
+		s->setBaseDefence(baseDefence);
+		s->setBlockChance(blockChance);
+		s->setName(shieldName);
+
+		shields.push_back(*s);
 	}
 }

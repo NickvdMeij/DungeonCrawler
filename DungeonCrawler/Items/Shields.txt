@@ -1,0 +1,7 @@
+Table 30 30
+Skull 5 5
+Plank 10 5
+Door 20 20
+Shield 15 10
+Plank 5 5
+Immortality 100 100

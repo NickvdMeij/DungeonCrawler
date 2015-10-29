@@ -1,6 +1,7 @@
 #pragma once
 #include "Game.h"
 #include "CommandFactory.h"
+#include "ItemFactory.h"
 
 class GameController
 {
@@ -10,8 +11,9 @@ public:
 
 
 private:
-	CommandFactory commandFactory;;
+	CommandFactory commandFactory;
 	Game* game;
+	ItemFactory* itemFactory;
 	void Listen();
 	void Run();
 
