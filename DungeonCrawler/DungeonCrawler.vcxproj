@@ -148,12 +148,14 @@
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandFactory.h" />
+    <ClInclude Include="CompasCommand.h" />
     <ClInclude Include="DungeonCrawler.h" />
     <ClInclude Include="DungeonGenerator.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameController.h" />
     <ClInclude Include="GoCommand.h" />
+    <ClInclude Include="HandgrenadeCommand.h" />
     <ClInclude Include="HelpCommand.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="Room.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TalismanCommand.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
@@ -173,12 +176,14 @@
     <ClCompile Include="Array2D.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
+    <ClCompile Include="CompasCommand.cpp" />
     <ClCompile Include="DungeonCrawler.cpp" />
     <ClCompile Include="DungeonGenerator.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameController.cpp" />
     <ClCompile Include="GoCommand.cpp" />
+    <ClCompile Include="HandgrenadeCommand.cpp" />
     <ClCompile Include="HelpCommand.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -196,6 +201,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="TalismanCommand.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>

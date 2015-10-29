@@ -3,6 +3,7 @@
 #include <map>
 #include "HelpCommand.h"
 #include "GoCommand.h"
+#include "TalismanCommand.h"
 #include "MapCommand.h"
 #include <iostream>
 
@@ -11,6 +12,7 @@ CommandFactory::CommandFactory()
 	mapping["help"] = new HelpCommand();
 	mapping["go"] = new GoCommand();
 	mapping["map"] = new MapCommand();
+	mapping["talisman"] = new TalismanCommand();
 }
 
 

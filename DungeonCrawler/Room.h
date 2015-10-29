@@ -43,9 +43,14 @@ public:
 	vector<Enemy> GetEnemies();
 	void SetDoorway(Direction direction, Room* room);
 	Room* GetAdjecentRoom(Direction direction);
+	vector<Room*> GetAdjecentRooms();
 	bool DoesRoomHaveDoorway(Direction direction);
 	int GetXPosition() { return xPosition; }
 	int GetYPosition() { return yPosition; }
+	void setDistance(int i) { distanceFromCurrentRoom = i; }
+	int getDistance() { return distanceFromCurrentRoom; }
+	void setDifficulty(int i) { difficulty = i; }
+	int getDifficulty() { return difficulty; }
 	Room& operator=(const Room& other);
 	bool operator==(const Room& other);
 	bool operator!=(const Room& other);
@@ -59,7 +64,7 @@ public:
 private:
 	map<Direction, Room*> adjecentRooms;
 	vector<Enemy> enemies;
-	int xPosition, yPosition;
+	int xPosition, yPosition, distanceFromCurrentRoom, difficulty;
 	bool visited;
 	Atmosfeer atmosfeer;
 	Furniture furniture;
