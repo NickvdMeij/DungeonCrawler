@@ -24,8 +24,8 @@ public:
 	int getLevel() { return level; }
 	void setExperience(int e) { experience = e; }
 	int getExperience() { return experience; }
-	void setCurrentRoom(Room room) { currentRoom = room; }
-	Room getCurrentRoom() { return currentRoom; }
+	void setCurrentRoom(Room* room) { currentRoom = room; }
+	Room* getCurrentRoom() { return currentRoom; }
 	Inventory getInventory() { return inventory; }
 	Weapon* getMainHand() { return mainHand; }
 	Shield* getOffHand() { return offHand; }
@@ -38,8 +38,8 @@ private:
 	Weapon* mainHand;
 	Shield* offHand;
 	string name;
-	Room currentRoom;
 	int totalHealth, currentHealth, level, experience;
+	Room* currentRoom;
 	Inventory inventory;
 };
 

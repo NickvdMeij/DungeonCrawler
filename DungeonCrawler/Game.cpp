@@ -22,9 +22,15 @@ Player* Game::getPlayer()
 	return player;
 }
 
+Level * Game::getLevel()
+{
+	return level;
+}
+
 void Game::InitialSetup()
 {
-	level = LevelFactory::Instance()->FirstLevel();
+	lf = new LevelFactory();
+	level = lf->FirstLevel();
 
 	ItemFactory* itemFactory = new ItemFactory();
 	Weapon w = itemFactory->CreateWeapon(1);
@@ -32,6 +38,7 @@ void Game::InitialSetup()
 	
 	player = new Player();
 	player->setCurrentRoom(level->getStartRoom());
+	player->getCurrentRoom()->visitRoom();
 	player->setLevel(1);
 	player->setCurrentHealth(100);
 	player->setTotalHealth(200);
@@ -41,5 +48,6 @@ void Game::InitialSetup()
 	player->setOffHand(&s);
 
 	player->TakeDamage(player->getMainHand()->getDamage());	
+
 }
 

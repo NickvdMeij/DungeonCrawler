@@ -13,11 +13,13 @@ Player::~Player()
 
 void Player::MoveDirection(Room::Direction direction)
 {
-	if (currentRoom.DoesRoomHaveDoorway(direction)) {
-		currentRoom = currentRoom.GetAdjecentRoom(direction);
+	if (currentRoom->DoesRoomHaveDoorway(direction)) {
+		setCurrentRoom(currentRoom->GetAdjecentRoom(direction));
+		currentRoom->visitRoom();
+		cout << "You entered the next room." << endl;
 	}
 	else {
-		cout << "No room in that direction!" << endl;
+		cout << "No doorway in that direction!" << endl;
 	}
 }
 

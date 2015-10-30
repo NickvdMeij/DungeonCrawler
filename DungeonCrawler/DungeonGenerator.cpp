@@ -16,16 +16,16 @@ DungeonGenerator::~DungeonGenerator()
 {
 }
 
-Room** DungeonGenerator::GenerateRooms(int width, int height, int level)
+Array2D* DungeonGenerator::GenerateRooms(int width, int height, int level)
 {
-	rooms = new Room*[width];
-	for (int x = 0; x < width; x++) {
+	rooms = new Array2D(height, width);
+	/*for (int x = 0; x < width; x++) {
 		rooms[x] = new Room[height];
-	}
+	}*/
 
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
-			rooms[x][y] = generateRandomRoom(x, y, level);
+			rooms->put(generateRandomRoom(x, y, level), x, y);
 		}
 	}
 
@@ -53,7 +53,7 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 	int randomY = rnd.generateInt(0, height - 1);
 
 	//begin bij willekeurige kamer
-	Room* start = &rooms[randomX][randomY];
+	Room* start = rooms->get(randomX, randomY);
 	queue.push_back(start);
 
 	//cout << endl;
@@ -83,23 +83,23 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 				}
 				if (makeDoorway == 1) {
 					if (adjecent->GetXPosition() > room->GetXPosition()) {
-						room->SetDoorway(Room::Direction::East, *adjecent);
-						adjecent->SetDoorway(Room::Direction::West, *room);
+						room->SetDoorway(Room::Direction::East, adjecent);
+						adjecent->SetDoorway(Room::Direction::West, room);
 					}
 					//als kamer links van huidige kamer is
 					if (adjecent->GetXPosition() < room->GetXPosition()) {
-						room->SetDoorway(Room::Direction::West, *adjecent);
-						adjecent->SetDoorway(Room::Direction::East, *room);
+						room->SetDoorway(Room::Direction::West, adjecent);
+						adjecent->SetDoorway(Room::Direction::East, room);
 					}
 					//als kamer onder de huidige kamer is
 					if (adjecent->GetYPosition() > room->GetYPosition()) {
-						room->SetDoorway(Room::Direction::South, *adjecent);
-						adjecent->SetDoorway(Room::Direction::North, *room);
+						room->SetDoorway(Room::Direction::South, adjecent);
+						adjecent->SetDoorway(Room::Direction::North, room);
 					}
 					//als kamer boven de huidige kamer is
 					if (adjecent->GetYPosition() < room->GetYPosition()) {
-						room->SetDoorway(Room::Direction::North, *adjecent);
-						adjecent->SetDoorway(Room::Direction::South, *room);
+						room->SetDoorway(Room::Direction::North, adjecent);
+						adjecent->SetDoorway(Room::Direction::South, room);
 					}
 				}
 
@@ -126,16 +126,16 @@ vector<Room*> DungeonGenerator::GetAdjecentRooms(Room* room, int width, int heig
 	bool south = room->DoesRoomHaveDoorway(Room::Direction::South);
 
 	if (roomX < (width - 1) && !east) {
-		adjecentRooms.push_back(&rooms[roomX + 1][roomY]);
+		adjecentRooms.push_back(rooms->get(roomX + 1, roomY));
 	}
 	if (roomX > 0 && !west) {
-		adjecentRooms.push_back(&rooms[roomX - 1][roomY]);
+		adjecentRooms.push_back(rooms->get(roomX - 1, roomY));
 	}
 	if (roomY < (height - 1) && !south) {
-		adjecentRooms.push_back(&rooms[roomX][roomY + 1]);
+		adjecentRooms.push_back(rooms->get(roomX, roomY + 1));
 	}
 	if (roomY > 0 && !north) {
-		adjecentRooms.push_back(&rooms[roomX][roomY - 1]);
+		adjecentRooms.push_back(rooms->get(roomX, roomY - 1));
 	}
 
 	return adjecentRooms;
@@ -205,35 +205,3 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 	return room;
 
 }
-
-//void DungeonGenerator::PrintDungeon(int width, int height)
-//{
-//	//tijdelijk print
-//	cout << "Dungeon map: " << endl;
-//
-//	for (int y = 0; y < height; y++)
-//	{
-//		for (int x = 0; x < width; x++)
-//		{
-//			cout << "[]";
-//			if (rooms[x][y].DoesRoomHaveDoorway(Room::Direction::East)) {
-//				cout << "-";
-//			}
-//			else {
-//				cout << " ";
-//			}
-//		}
-//		cout << endl;
-//		for (int x = 0; x < width; x++)
-//		{
-//			if (rooms[x][y].DoesRoomHaveDoorway(Room::Direction::South)) {
-//				cout << " |";
-//			}
-//			else {
-//				cout << "  ";
-//			}
-//			cout << " ";
-//		}
-//		cout << endl;
-//	}
-//}

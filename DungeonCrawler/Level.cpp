@@ -7,14 +7,14 @@ Level::Level(int _width, int _height, int _floor) {
 	floor = _floor;
 
 	DungeonGenerator g;
-	Room** rooms = g.GenerateRooms(width, height, floor);
+	//Room** rooms = g.GenerateRooms(width, height, floor);
 
-	dungeon.initArray2D(width, height);
-	for (int x = 0; x < width; x++) {
+	dungeon = g.GenerateRooms(width, height, floor);
+	/*for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
-			dungeon.put(rooms[x][y], x, y);
+			dungeon->put(rooms[x][y], x, y);
 		}
-	}
+	}*/
 	chooseStartRoom();
 }
 
@@ -40,7 +40,7 @@ Level& Level::operator=(const Level & other)
 		//delete stairRoom;
 		//startRoom = nullptr;
 		//stairRoom = nullptr;
-		dungeon.~Array2D();
+		//dungeon->~Array2D();
 		startRoom = other.startRoom;
 		stairRoom = other.stairRoom;
 		floor = other.floor;
@@ -57,12 +57,12 @@ void Level::chooseStartRoom()
 	int randomY = rnd.generateInt(0, height - 1);
 
 	//begin bij willekeurige kamer
-	startRoom = dungeon.get(randomX, randomY);
+	setStartRoom(dungeon->get(randomX, randomY));
 }
 
 void Level::printDungeon()
 {
-	cout << "Dungeon map level "<< floor << ": " << endl;
+	/*cout << "Dungeon map level "<< floor << ": " << endl;
 
 	for (int y = 0; y < height; y++)
 	{
@@ -99,5 +99,5 @@ void Level::printDungeon()
 			cout << " ";
 		}
 		cout << endl;
-	}
+	}*/
 }

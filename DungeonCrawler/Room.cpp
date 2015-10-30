@@ -9,12 +9,26 @@ Room::Room(int x, int y)
 {
 	xPosition = x;
 	yPosition = y;
-	visited = true;
+	visited = false;
 }
 
 Room::Room()
 {
 	visited = false;
+}
+
+Room::Room(const Room & other)
+{
+	//cout << "room copy constructor" << endl;
+	xPosition = other.xPosition;
+	yPosition = other.yPosition;
+	adjecentRooms = other.adjecentRooms;
+	enemies = other.enemies;
+	visited = other.visited;
+	lighting = other.lighting;
+	size = other.size;
+	atmosfeer = other.atmosfeer;
+	furniture = other.furniture;
 }
 
 Room::~Room()
@@ -32,14 +46,26 @@ vector<Enemy> Room::GetEnemies()
 	return enemies;
 }
 
-void Room::SetDoorway(Direction direction, Room room)
+void Room::SetDoorway(Direction direction, Room* room)
 {
 	adjecentRooms[direction] = room;
 }
 
-Room Room::GetAdjecentRoom(Direction direction)
+Room* Room::GetAdjecentRoom(Direction direction)
 {
 	return adjecentRooms[direction];
+}
+
+vector<Room*> Room::GetAdjecentRooms()
+{
+	vector<Room*> rooms;
+	typedef std::map<Direction, Room*>::iterator it_type;
+	for (it_type iterator = adjecentRooms.begin(); iterator != adjecentRooms.end(); iterator++) {
+		rooms.push_back(iterator->second);
+		// iterator->second = value
+	}
+
+	return rooms;
 }
 
 bool Room::DoesRoomHaveDoorway(Direction direction)
@@ -85,4 +111,9 @@ bool Room::operator!=(const Room& other)
 		return true;
 	}
 	return false;
+}
+
+void Room::visitRoom()
+{
+	visited = true;
 }

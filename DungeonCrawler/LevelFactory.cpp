@@ -10,7 +10,6 @@ LevelFactory::LevelFactory()
 	Register(4, Level(8, 8, 4));
 }
 
-
 LevelFactory::~LevelFactory()
 {
 	levelMap.clear();
