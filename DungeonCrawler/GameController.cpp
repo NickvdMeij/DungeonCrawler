@@ -60,4 +60,5 @@ void GameController::Listen()
 	}
 
 	commandFactory.CreateCommand(command, parameters, game);
+	cout << endl;
 }

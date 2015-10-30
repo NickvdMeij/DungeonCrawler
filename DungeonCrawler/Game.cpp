@@ -29,10 +29,13 @@ Level * Game::getLevel()
 
 void Game::InitialSetup()
 {
-	level = LevelFactory::Instance()->FirstLevel();
+	
+	lf = new LevelFactory();
+	level = lf->FirstLevel();
+
 	player = new Player();
 	player->setCurrentRoom(level->getStartRoom());
-	player->getCurrentRoom().visitRoom();
+	player->getCurrentRoom()->visitRoom();
 
 	ItemFactory::GetInstance()->CreateItem("test");
 }

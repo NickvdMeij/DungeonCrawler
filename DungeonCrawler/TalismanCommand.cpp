@@ -15,8 +15,8 @@ TalismanCommand::~TalismanCommand()
 
 void TalismanCommand::Run(list<string>* parameters, Game * game)
 {
-	Room* stairRoom = &game->getLevel()->getStairRoom();
-	Room* startRoom = &game->getPlayer()->getCurrentRoom();
+	Room* stairRoom = game->getLevel()->getStairRoom();
+	Room* startRoom = game->getPlayer()->getCurrentRoom();
 	startRoom->setDistance(0);
 
 	deque<Room*> queue;

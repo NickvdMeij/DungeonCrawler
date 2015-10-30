@@ -17,7 +17,9 @@ public:
 	void initArray2D(int x_size1, int y_size1);
 										 // storing & retrieving values
 	void put(Room room, int x, int y) { p[index(x, y)] = room; }
-	Room get(int x, int y) { return p[index(x, y)]; }
+	Room* get(int x, int y) { 
+		return &p[index(x, y)];
+	}
 
 	bool operator==(const Array2D& other); // equality comparison
 

@@ -28,8 +28,8 @@ public:
 	int getDefence() { return defence; }
 	void setPerception(int p) { perception = p; }
 	int getPerception() { return perception; }
-	void setCurrentRoom(Room& room) { currentRoom = room; }
-	Room getCurrentRoom() { return currentRoom; }
+	void setCurrentRoom(Room* room) { currentRoom = room; }
+	Room* getCurrentRoom() { return currentRoom; }
 	Inventory getInventory() { return inventory; }
 	Weapon getMainHand() { return mainHand; }
 	Shield getOffHand() { return offHand; }
@@ -41,7 +41,7 @@ private:
 	Weapon mainHand;
 	Shield offHand;
 	string name;
-	Room currentRoom;
+	Room* currentRoom;
 	int healthpoints, level, experience, attack, defence, perception;
 	Inventory inventory;
 };

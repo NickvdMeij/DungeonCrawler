@@ -14,7 +14,7 @@ CompasCommand::~CompasCommand()
 
 void CompasCommand::Run(list<string>* parameters, Game * game)
 {
-	Room* startRoom = &game->getPlayer()->getCurrentRoom();
+	Room* startRoom = game->getPlayer()->getCurrentRoom();
 	distance.insert(std::pair<Room*, int>(startRoom, 0));
 	unsettledRooms.push_back(startRoom);
 	while (!unsettledRooms.empty()) {
