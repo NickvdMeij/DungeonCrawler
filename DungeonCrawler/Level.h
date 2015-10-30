@@ -17,6 +17,7 @@ public:
 	~Level();
 	Level& operator=(const Level& other); // copy assignment
 	void chooseStartRoom();
+	void chooseStairRoom();
 	void setStartRoom(Room* room) { startRoom = room; }
 	void setStairRoom(Room* room) { stairRoom = room; }
 	Room* getStartRoom() { return startRoom; }

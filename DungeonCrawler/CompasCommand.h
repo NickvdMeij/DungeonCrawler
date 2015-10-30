@@ -21,6 +21,7 @@ public:
 	bool isSettled(Room* room);
 	int getDifficulty(Room* room);
 	vector<Room*> getNeighbors(Room* room);
+	void getPath(Room* stairRoom);
 
 };
 

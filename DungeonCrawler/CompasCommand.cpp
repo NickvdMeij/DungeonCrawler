@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CompasCommand.h"
+#include <sstream>
 
 
 
@@ -29,6 +30,8 @@ void CompasCommand::Run(list<string>* parameters, Game * game)
 
 		findMinimalDistances(room);
 	}
+
+	getPath(game->getLevel()->getStairRoom());
 }
 
 Room * CompasCommand::getMinimum(vector<Room*> unsettledRooms)
@@ -85,5 +88,48 @@ int CompasCommand::getDifficulty(Room * room)
 vector<Room*> CompasCommand::getNeighbors(Room * room)
 {
 	return room->GetAdjecentRooms();
+}
+
+void CompasCommand::getPath(Room * stairRoom)
+{
+	vector<Room*> path;
+	vector<std::string> directions;
+	Room* step = stairRoom;
+
+	// check of stairRoom wel in predecessors zit
+	if (predecessors.find(stairRoom) != predecessors.end()) {
+		path.push_back(stairRoom);
+
+		//werk hashmap terug vanuit stairRoom
+		while (predecessors.find(step) != predecessors.end()) {
+			step = predecessors[step];
+			path.push_back(step);
+		}
+
+		for (int i = path.size(); i > 0; --i) {
+			if (i > 0) {
+				Room* to = path[i];
+				Room* from = path[i - 1];
+
+				if (from->GetXPosition() < to->GetXPosition()) {
+					directions.push_back("East");
+				}
+				else if (from->GetXPosition() > to->GetXPosition()) {
+					directions.push_back("West");
+				}
+				else if (from->GetYPosition() > to->GetYPosition()) {
+					directions.push_back("South");
+				}
+				else if (from->GetYPosition() < to->GetYPosition()) {
+					directions.push_back("North");
+				}
+			}
+		}
+
+		for (int i = directions.size(); i > 0; --i) {
+			std::cout << directions[i] << " - " << endl;
+		}
+	}
+	
 }
 

@@ -15,6 +15,9 @@ TalismanCommand::~TalismanCommand()
 
 void TalismanCommand::Run(list<string>* parameters, Game * game)
 {
+	int amountOfRoomsAway = 0;
+	bool foundStair = false;
+
 	Room* stairRoom = game->getLevel()->getStairRoom();
 	Room* startRoom = game->getPlayer()->getCurrentRoom();
 	startRoom->setDistance(0);
@@ -25,12 +28,11 @@ void TalismanCommand::Run(list<string>* parameters, Game * game)
 	//begin bij currentRoom
 	queue.push_back(startRoom);
 
-	while (!queue.empty()) {
+	while (!queue.empty() && !foundStair) {
 		Room* room = queue.front();
 		queue.pop_front(); // haal room uit queue
 
 		visitedRooms.push_back(room);
-
 
 		for (Room* adjecent : room->GetAdjecentRooms()) {
 			bool found1 = find(queue.begin(), queue.end(), adjecent) != queue.end();
@@ -40,7 +42,8 @@ void TalismanCommand::Run(list<string>* parameters, Game * game)
 				adjecent->setDistance(room->getDistance() + 1);// zet afstand 1 hoger dan huidige kamer
 				if (adjecent == stairRoom) {
 					// stairRoom gevonden: print en stop loop
-					cout << "De talisman licht op en fluistert dat de trap omhoog " << adjecent->getDistance() << " kamers ver weg is." << endl;
+					amountOfRoomsAway = adjecent->getDistance();
+					foundStair = true;
 					break;
 				}
 				queue.push_back(adjecent);
@@ -48,4 +51,6 @@ void TalismanCommand::Run(list<string>* parameters, Game * game)
 
 		}
 	}
+
+	cout << "De talisman licht op en fluistert dat de trap omhoog " << amountOfRoomsAway << " kamers ver weg is." << endl;
 }

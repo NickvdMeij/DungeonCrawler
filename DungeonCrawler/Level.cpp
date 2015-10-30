@@ -16,6 +16,7 @@ Level::Level(int _width, int _height, int _floor) {
 		}
 	}*/
 	chooseStartRoom();
+	chooseStairRoom();
 }
 
 Level::Level(const Level & other)
@@ -58,6 +59,22 @@ void Level::chooseStartRoom()
 
 	//begin bij willekeurige kamer
 	setStartRoom(dungeon->get(randomX, randomY));
+}
+
+void Level::chooseStairRoom()
+{
+	int randomX = rnd.generateInt(0, width - 1);
+	int randomY = rnd.generateInt(0, height - 1);
+
+	//kamer mag niet rondom start kamer zijn.
+	while ((randomX == startRoom->GetXPosition() || randomX == startRoom->GetXPosition() - 1 || randomX == startRoom->GetXPosition() + 1)
+		&& (randomY == startRoom->GetYPosition() || randomY == startRoom->GetYPosition() - 1 || randomY == startRoom->GetYPosition() + 1)) {
+		randomX = rnd.generateInt(0, width - 1);
+		randomY = rnd.generateInt(0, height - 1);
+	}
+
+	//begin bij willekeurige kamer
+	setStairRoom(dungeon->get(randomX, randomY));
 }
 
 void Level::printDungeon()

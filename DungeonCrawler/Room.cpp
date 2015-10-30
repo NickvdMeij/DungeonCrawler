@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Array2D.h"
-
+#include "RandomInt.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -9,7 +9,10 @@ Room::Room(int x, int y)
 {
 	xPosition = x;
 	yPosition = y;
-	visited = false;
+	visited = true;
+
+	int random = RandomInt::generateInt(1, 20);
+	setDifficulty(random);
 }
 
 Room::Room()
