@@ -47,7 +47,5 @@ void Game::InitialSetup()
 	player->setMainHand(w);
 	player->setOffHand(s);
 
-	player->TakeDamage(player->getMainHand()->getDamage());	
-
 }
 

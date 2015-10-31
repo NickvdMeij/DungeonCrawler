@@ -12,10 +12,7 @@ Room::Room(int x, int y)
 	visited = false;
 
 	enemy = new Enemy();
-	enemy->setName("TestDummy");
-	enemy->setHealth(500);
-	enemy->setAttack(25);
-	enemy->setDefence(5);
+	enemy->setIsAlive(false);
 }
 
 Room::Room()
@@ -23,10 +20,7 @@ Room::Room()
 	visited = false;
 
 	enemy = new Enemy();
-	enemy->setName("TestDummy");
-	enemy->setHealth(50);
-	enemy->setAttack(25);
-	enemy->setDefence(5);
+	enemy->setIsAlive(false);
 }
 
 Room::Room(const Room & other)
@@ -91,6 +85,7 @@ bool Room::DoesRoomHaveDoorway(Direction direction)
 Room & Room::operator=(const Room & other)
 {
 	if (this != &other) {
+		enemy = other.enemy;
 		xPosition = other.xPosition;
 		yPosition = other.yPosition;
 		size = other.size;

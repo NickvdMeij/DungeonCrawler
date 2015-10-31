@@ -14,6 +14,7 @@ public:
 	Enemy();
 	~Enemy();
 	bool isAlive() { return alive; };
+	void setIsAlive(bool a) { alive = a; };
 	string getName() { return name; };
 	void setName(string s) { name = s; };
 	void takeDamage(int i);

@@ -18,7 +18,6 @@ CommandFactory::CommandFactory()
 	mapping["talisman"] = new TalismanCommand();
 	mapping["look"] = new LookCommand();
 	mapping["attack"] = new AttackCommand();
-	mapping["view"] = new ViewCommand();
 }
 
 

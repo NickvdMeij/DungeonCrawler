@@ -145,6 +145,28 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 {
 	Room room(xPos, yPos);
 
+	int chance = 20;
+	int randomEnemy = rnd.generateInt(0, 100);
+
+	if (chance > randomEnemy) {
+		Enemy* enemy = new Enemy();
+		enemy->setIsAlive(true);
+		enemy->setName("Goblin");
+		enemy->setAttack(25 * level);
+		enemy->setDefence(10 * level);
+		enemy->setHealth(100 * level);
+
+		room.setEnemy(enemy);
+	}
+	else {
+		Enemy* enemy = new Enemy();
+		enemy->setIsAlive(false);
+		enemy->setName("Goblin");
+
+		room.setEnemy(enemy);
+	}
+
+
 	//0 tot 2 omdat je maar 3 opties zijn per kenmerk
 	int randomSize = rnd.generateInt(0, 2);
 	int randomLighting = rnd.generateInt(0, 2);
