@@ -166,7 +166,9 @@
     <ClInclude Include="LookCommand.h" />
     <ClInclude Include="MapCommand.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerInfoCommand.h" />
     <ClInclude Include="RandomInt.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="stdafx.h" />
@@ -196,6 +198,7 @@
     <ClCompile Include="LookCommand.cpp" />
     <ClCompile Include="MapCommand.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerInfoCommand.cpp" />
     <ClCompile Include="RandomInt.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Shield.cpp" />
@@ -210,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Class Diagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DungeonCrawler.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

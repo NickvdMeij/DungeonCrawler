@@ -29,6 +29,7 @@ Level * Game::getLevel()
 
 void Game::InitialSetup()
 {
+	running = true;
 	lf = new LevelFactory();
 	level = lf->FirstLevel();
 

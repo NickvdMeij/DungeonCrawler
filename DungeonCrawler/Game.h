@@ -12,8 +12,11 @@ public:
 	~Game();
 	Player* getPlayer();
 	Level* getLevel();
+	bool isRunning() { return running; };
+	void finish() { running = false; };
 private:
 	Level* level;
+	bool running;
 	LevelFactory* lf;
 	Player* player;
 	std::list<Enemy*> enemies;

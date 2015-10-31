@@ -5,7 +5,7 @@ GameController::GameController()
 {
 	game = new Game();
 
-	while (true) {
+	while (game->isRunning()) {
 		Run();
 	}
 }

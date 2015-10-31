@@ -7,7 +7,7 @@
 #include "MapCommand.h"
 #include "LookCommand.h"
 #include "AttackCommand.h"
-#include "ViewCommand.h"
+#include "PlayerInfoCommand.h"
 #include <iostream>
 
 CommandFactory::CommandFactory()
@@ -18,6 +18,7 @@ CommandFactory::CommandFactory()
 	mapping["talisman"] = new TalismanCommand();
 	mapping["look"] = new LookCommand();
 	mapping["attack"] = new AttackCommand();
+	mapping["player"] = new PlayerInfoCommand();
 }
 
 

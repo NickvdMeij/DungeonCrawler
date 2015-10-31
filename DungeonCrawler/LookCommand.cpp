@@ -40,4 +40,6 @@ void LookCommand::Run(list<string>* parameters, Game * game)
 		std::cout << "Enemy Attack: " << game->getPlayer()->getCurrentRoom()->getEnemy()->getAttack() << std::endl;
 		std::cout << "Enemy Defence: " << game->getPlayer()->getCurrentRoom()->getEnemy()->getDefence() << std::endl;
 	}
+
+	//find weapon and equip or leave on the ground
 }
