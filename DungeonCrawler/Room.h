@@ -44,6 +44,7 @@ public:
 	void SetDoorway(Direction direction, Room* room);
 	Room* GetAdjecentRoom(Direction direction);
 	vector<Room*> GetAdjecentRooms();
+	map<Direction, Room*> GetAdjecentRoomsMap();
 	bool DoesRoomHaveDoorway(Direction direction);
 	int GetXPosition() { return xPosition; }
 	int GetYPosition() { return yPosition; }
@@ -60,6 +61,7 @@ public:
 	void setFurniture(Furniture f) { furniture = f; }
 	bool isVisited() { return visited; }
 	void visitRoom();
+	int getWeigthDoorway(Direction direction);
 
 private:
 	map<Direction, Room*> adjecentRooms;

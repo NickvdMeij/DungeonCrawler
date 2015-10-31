@@ -69,6 +69,11 @@ vector<Room*> Room::GetAdjecentRooms()
 	return rooms;
 }
 
+map<Room::Direction, Room*> Room::GetAdjecentRoomsMap()
+{
+	return adjecentRooms;
+}
+
 bool Room::DoesRoomHaveDoorway(Direction direction)
 {
 	if (adjecentRooms.size() > 0) {
@@ -117,4 +122,9 @@ bool Room::operator!=(const Room& other)
 void Room::visitRoom()
 {
 	visited = true;
+}
+
+int Room::getWeigthDoorway(Direction direction)
+{
+	return weightDoorways[direction];
 }

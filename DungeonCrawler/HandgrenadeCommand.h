@@ -10,5 +10,7 @@ public:
 	HandgrenadeCommand();
 	~HandgrenadeCommand();
 	void Run(list<string>* parameters, Game* game);
+	void GetMinimunEdge();
+	void CollapseDoorways(int amount);
 };
 
