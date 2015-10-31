@@ -10,20 +10,32 @@ Room::Room(int x, int y)
 	xPosition = x;
 	yPosition = y;
 	visited = false;
+
+	enemy = new Enemy();
+	enemy->setName("TestDummy");
+	enemy->setHealth(500);
+	enemy->setAttack(25);
+	enemy->setDefence(5);
 }
 
 Room::Room()
 {
 	visited = false;
+
+	enemy = new Enemy();
+	enemy->setName("TestDummy");
+	enemy->setHealth(50);
+	enemy->setAttack(25);
+	enemy->setDefence(5);
 }
 
 Room::Room(const Room & other)
 {
 	//cout << "room copy constructor" << endl;
+	enemy = other.enemy;
 	xPosition = other.xPosition;
 	yPosition = other.yPosition;
 	adjecentRooms = other.adjecentRooms;
-	enemies = other.enemies;
 	visited = other.visited;
 	lighting = other.lighting;
 	size = other.size;
@@ -39,11 +51,6 @@ string Room::GetDescripton()
 {
 	string s = string("Room position is ") + to_string(xPosition) + ":" + to_string(yPosition);
 	return s;
-}
-
-vector<Enemy> Room::GetEnemies()
-{
-	return enemies;
 }
 
 void Room::SetDoorway(Direction direction, Room* room)
@@ -90,7 +97,6 @@ Room & Room::operator=(const Room & other)
 		lighting = other.lighting;
 		atmosfeer = other.atmosfeer;
 		furniture = other.furniture;
-		enemies = other.enemies;
 		adjecentRooms = other.adjecentRooms;
 		visited = other.visited;
 	}

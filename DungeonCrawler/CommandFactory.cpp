@@ -5,6 +5,9 @@
 #include "GoCommand.h"
 #include "TalismanCommand.h"
 #include "MapCommand.h"
+#include "LookCommand.h"
+#include "AttackCommand.h"
+#include "ViewCommand.h"
 #include <iostream>
 
 CommandFactory::CommandFactory()
@@ -13,6 +16,9 @@ CommandFactory::CommandFactory()
 	mapping["go"] = new GoCommand();
 	mapping["map"] = new MapCommand();
 	mapping["talisman"] = new TalismanCommand();
+	mapping["look"] = new LookCommand();
+	mapping["attack"] = new AttackCommand();
+	mapping["view"] = new ViewCommand();
 }
 
 

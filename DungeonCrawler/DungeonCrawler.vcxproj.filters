@@ -108,6 +108,12 @@
     <ClInclude Include="CompasCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AttackCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LookCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -183,6 +189,12 @@
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
     <ClCompile Include="CompasCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="LookCommand.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
   </ItemGroup>

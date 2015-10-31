@@ -14,7 +14,7 @@ Weapon::~Weapon()
 
 int Weapon::getDamage()
 {
-	int totalDamage;
+	int totalDamage = 0;
 
 	totalDamage = baseDamage * (5 * level);
 	

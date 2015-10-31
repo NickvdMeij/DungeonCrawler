@@ -6,8 +6,23 @@ using namespace std;
 class Enemy {
 private:
 	string name;
+	int health;
+	int attack;
+	int defence;
+	bool alive;
 public:
 	Enemy();
 	~Enemy();
-	string GetName();
+	bool isAlive() { return alive; };
+	string getName() { return name; };
+	void setName(string s) { name = s; };
+	void takeDamage(int i);
+	int getDamage();
+	void setAttack(int i) { attack = i; };
+	void setDefence(int i) { defence = i; };
+	int getDefence() { return defence; };
+	void setHealth(int i) { health = i; };
+	int getHealth() { return health; };
+	int getAttack() { return attack; };
+
 };

@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
+    <ClInclude Include="AttackCommand.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="CompasCommand.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="ItemFactory.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="LevelFactory.h" />
+    <ClInclude Include="LookCommand.h" />
     <ClInclude Include="MapCommand.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RandomInt.h" />
@@ -174,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Array2D.cpp" />
+    <ClCompile Include="AttackCommand.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="CompasCommand.cpp" />
@@ -190,6 +193,7 @@
     <ClCompile Include="ItemFactory.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelFactory.cpp" />
+    <ClCompile Include="LookCommand.cpp" />
     <ClCompile Include="MapCommand.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RandomInt.cpp" />

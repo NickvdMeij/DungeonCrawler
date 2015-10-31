@@ -11,13 +11,13 @@ class ItemFactory
 public:
 	ItemFactory();
 	~ItemFactory();
-	Weapon CreateWeapon(int l);
-	Shield CreateShield(int l);
+	Weapon* CreateWeapon(int l);
+	Shield* CreateShield(int l);
 	
 private:
 	void readWeaponsFile();
 	void readShieldsFile();
-	vector<Weapon> weapons;
-	vector<Shield> shields;
+	vector<Weapon*> weapons;
+	vector<Shield*> shields;
 };
 

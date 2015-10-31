@@ -33,8 +33,8 @@ void Game::InitialSetup()
 	level = lf->FirstLevel();
 
 	ItemFactory* itemFactory = new ItemFactory();
-	Weapon w = itemFactory->CreateWeapon(1);
-	Shield s = itemFactory->CreateShield(1);
+	Weapon* w = itemFactory->CreateWeapon(1);
+	Shield* s = itemFactory->CreateShield(1);
 	
 	player = new Player();
 	player->setCurrentRoom(level->getStartRoom());
@@ -44,8 +44,8 @@ void Game::InitialSetup()
 	player->setTotalHealth(200);
 	player->setExperience(0);
 	player->setName("Derp");
-	player->setMainHand(&w);
-	player->setOffHand(&s);
+	player->setMainHand(w);
+	player->setOffHand(s);
 
 	player->TakeDamage(player->getMainHand()->getDamage());	
 

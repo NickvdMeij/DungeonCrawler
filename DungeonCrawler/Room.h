@@ -40,7 +40,6 @@ public:
 	Room(const Room& other); // copy constructor
 	~Room();
 	string GetDescripton();
-	vector<Enemy> GetEnemies();
 	void SetDoorway(Direction direction, Room* room);
 	Room* GetAdjecentRoom(Direction direction);
 	vector<Room*> GetAdjecentRooms();
@@ -60,10 +59,17 @@ public:
 	void setFurniture(Furniture f) { furniture = f; }
 	bool isVisited() { return visited; }
 	void visitRoom();
+	bool hasEnemy() { return enemy->isAlive(); };
+	Enemy* getEnemy() {
+		return enemy;
+	};
+	void setEnemy(Enemy* e) {
+		enemy = e;
+	}
 
 private:
+	Enemy* enemy;
 	map<Direction, Room*> adjecentRooms;
-	vector<Enemy> enemies;
 	int xPosition, yPosition, distanceFromCurrentRoom, difficulty;
 	bool visited;
 	Atmosfeer atmosfeer;

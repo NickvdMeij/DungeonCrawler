@@ -17,23 +17,23 @@ ItemFactory::~ItemFactory()
 {
 }
 
-Weapon ItemFactory::CreateWeapon(int level)
+Weapon* ItemFactory::CreateWeapon(int level)
 {
 	int random = RandomInt::generateInt(0, weapons.size());
-	Weapon w = weapons[random];
+	Weapon* w = weapons[random];
 
-	w.setLevel(level);
+	w->setLevel(level);
 
 	return w;
 }
 
-Shield ItemFactory::CreateShield(int level)
+Shield* ItemFactory::CreateShield(int level)
 {
 	int random = RandomInt::generateInt(0, shields.size());
 
-	Shield s = shields[random];
+	Shield* s = shields[random];
 
-	s.setLevel(level);
+	s->setLevel(level);
 
 	return s;
 }
@@ -56,7 +56,7 @@ void ItemFactory::readWeaponsFile()
 		w->setMissChance(missChance);
 		w->setName(weaponName);
 
-		weapons.push_back(*w);
+		weapons.push_back(w);
 	}
 }
 
@@ -77,6 +77,6 @@ void ItemFactory::readShieldsFile()
 		s->setBlockChance(blockChance);
 		s->setName(shieldName);
 
-		shields.push_back(*s);
+		shields.push_back(s);
 	}
 }
