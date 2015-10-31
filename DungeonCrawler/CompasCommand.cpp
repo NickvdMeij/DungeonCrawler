@@ -20,7 +20,7 @@ void CompasCommand::Run(list<string>* parameters, Game * game)
 	unsettledRooms.push_back(startRoom);
 	while (!unsettledRooms.empty()) {
 		Room* room = getMinimum(unsettledRooms);
-		settledRooms.push_back(startRoom);
+		settledRooms.push_back(room);
 
 		for (int i = 0; i < unsettledRooms.size(); i++) { //remove room from unsettledRooms
 			if (unsettledRooms[i] == room) {

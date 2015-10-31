@@ -12,6 +12,7 @@ public:
 	~Game();
 	Player* getPlayer();
 	Level* getLevel();
+	void nextLevel();
 private:
 	Level* level;
 	LevelFactory* lf;

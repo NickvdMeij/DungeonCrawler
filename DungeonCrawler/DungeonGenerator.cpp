@@ -199,6 +199,9 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 		break;
 	}
 
+	int random = RandomInt::generateInt(1, 20);
+	room.setDifficulty(random);
+
 	///-------TODO------------///
 	//Enemies genereren afhankelijk van level
 

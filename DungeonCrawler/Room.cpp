@@ -10,9 +10,6 @@ Room::Room(int x, int y)
 	xPosition = x;
 	yPosition = y;
 	visited = true;
-
-	int random = RandomInt::generateInt(1, 20);
-	setDifficulty(random);
 }
 
 Room::Room()
@@ -52,6 +49,7 @@ vector<Enemy> Room::GetEnemies()
 void Room::SetDoorway(Direction direction, Room* room)
 {
 	adjecentRooms[direction] = room;
+	weightDoorways[direction] = RandomInt::generateInt(1, 10);
 }
 
 Room* Room::GetAdjecentRoom(Direction direction)

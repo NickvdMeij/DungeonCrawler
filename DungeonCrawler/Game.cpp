@@ -27,6 +27,12 @@ Level * Game::getLevel()
 	return level;
 }
 
+void Game::nextLevel()
+{
+	level = lf->NextLevel(level);
+	player->setCurrentRoom(level->getStartRoom());
+}
+
 void Game::InitialSetup()
 {
 	lf = new LevelFactory();

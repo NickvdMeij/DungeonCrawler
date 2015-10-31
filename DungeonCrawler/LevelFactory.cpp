@@ -8,6 +8,7 @@ LevelFactory::LevelFactory()
 	Register(2, Level(6, 6, 2));
 	Register(3, Level(7, 7, 3));
 	Register(4, Level(8, 8, 4));
+	Register(5, Level(1, 1, 5));
 }
 
 LevelFactory::~LevelFactory()

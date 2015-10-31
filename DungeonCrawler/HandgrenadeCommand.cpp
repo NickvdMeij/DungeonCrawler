@@ -15,5 +15,5 @@ HandgrenadeCommand::~HandgrenadeCommand()
 
 void HandgrenadeCommand::Run(list<string>* parameters, Game * game)
 {
-	
+	Room* startRoom = game->getPlayer()->getCurrentRoom();
 }

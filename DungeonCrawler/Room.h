@@ -63,6 +63,7 @@ public:
 
 private:
 	map<Direction, Room*> adjecentRooms;
+	map<Direction, int> weightDoorways;
 	vector<Enemy> enemies;
 	int xPosition, yPosition, distanceFromCurrentRoom, difficulty;
 	bool visited;

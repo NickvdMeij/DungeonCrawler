@@ -7,16 +7,13 @@ Level::Level(int _width, int _height, int _floor) {
 	floor = _floor;
 
 	DungeonGenerator g;
-	//Room** rooms = g.GenerateRooms(width, height, floor);
 
 	dungeon = g.GenerateRooms(width, height, floor);
-	/*for (int x = 0; x < width; x++) {
-		for (int y = 0; y < height; y++) {
-			dungeon->put(rooms[x][y], x, y);
-		}
-	}*/
+
 	chooseStartRoom();
-	chooseStairRoom();
+	if (floor < 5) {
+		chooseStairRoom();
+	}
 }
 
 Level::Level(const Level & other)
