@@ -15,8 +15,9 @@ void StairCommand::Run(list<string>* parameters, Game * game)
 {
 	if (game->getPlayer()->getCurrentRoom() == game->getLevel()->getStairRoom()) {
 		game->nextLevel();
+		std::cout << "You took the stair to the next level." << endl;
 	}
 	else {
-		std::cout << "Deze kamer bevat geen trap" << endl;
+		std::cout << "This room doesn't have a stair." << endl;
 	}
 }
