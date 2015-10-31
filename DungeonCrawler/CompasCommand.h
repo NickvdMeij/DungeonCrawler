@@ -2,6 +2,7 @@
 #include "Command.h"
 #include <vector>
 #include <map>
+#include "RandomInt.h"
 
 class CompasCommand :
 	public Command
@@ -11,6 +12,7 @@ private:
 	vector<Room*> unsettledRooms;
 	map<Room*, Room*> predecessors;
 	map<Room*, int> distance;
+	RandomInt rnd;
 public:
 	CompasCommand();
 	~CompasCommand();
@@ -21,6 +23,8 @@ public:
 	bool isSettled(Room* room);
 	int getDifficulty(Room* room);
 	vector<Room*> getNeighbors(Room* room);
+
+	void getPath(Room * stairRoom);
 
 };
 

@@ -14,6 +14,7 @@ public:
 	Level* getLevel();
 	bool isRunning() { return running; };
 	void finish() { running = false; };
+	void nextLevel();
 private:
 	Level* level;
 	bool running;

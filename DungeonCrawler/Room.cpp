@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Array2D.h"
-
+#include "RandomInt.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
@@ -9,7 +9,7 @@ Room::Room(int x, int y)
 {
 	xPosition = x;
 	yPosition = y;
-	visited = false;
+	visited = true;
 
 	enemy = new Enemy();
 	enemy->setIsAlive(false);
@@ -50,6 +50,17 @@ string Room::GetDescripton()
 void Room::SetDoorway(Direction direction, Room* room)
 {
 	adjecentRooms[direction] = room;
+	weightDoorways[direction] = RandomInt::generateInt(1, 10);
+}
+
+int Room::getWeigthDoorway(Direction direction)
+{
+	return weightDoorways[direction];
+}
+
+map<Room::Direction, Room*> Room::GetAdjecentRoomsMap()
+{
+	return adjecentRooms;
 }
 
 Room* Room::GetAdjecentRoom(Direction direction)
@@ -80,6 +91,16 @@ bool Room::DoesRoomHaveDoorway(Direction direction)
 		return false;
 	}
 	return false;
+}
+
+void Room::CollapseDoorway(Direction direction)
+{
+	adjecentRooms[direction] = nullptr;
+}
+
+bool Room::isDoorwayCollapsed(Direction direction)
+{
+	return adjecentRooms[direction] == nullptr;	
 }
 
 Room & Room::operator=(const Room & other)

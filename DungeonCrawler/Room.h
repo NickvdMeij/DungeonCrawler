@@ -41,9 +41,13 @@ public:
 	~Room();
 	string GetDescripton();
 	void SetDoorway(Direction direction, Room* room);
+	int getWeigthDoorway(Direction direction);
+	map<Room::Direction, Room*> GetAdjecentRoomsMap();
 	Room* GetAdjecentRoom(Direction direction);
 	vector<Room*> GetAdjecentRooms();
 	bool DoesRoomHaveDoorway(Direction direction);
+	void CollapseDoorway(Direction direction);
+	bool isDoorwayCollapsed(Direction direction);
 	int GetXPosition() { return xPosition; }
 	int GetYPosition() { return yPosition; }
 	void setDistance(int i) { distanceFromCurrentRoom = i; }
@@ -70,6 +74,7 @@ public:
 private:
 	Enemy* enemy;
 	map<Direction, Room*> adjecentRooms;
+	map<Direction, int> weightDoorways;
 	int xPosition, yPosition, distanceFromCurrentRoom, difficulty;
 	bool visited;
 	Atmosfeer atmosfeer;

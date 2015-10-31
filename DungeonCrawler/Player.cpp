@@ -14,9 +14,14 @@ Player::~Player()
 void Player::MoveDirection(Room::Direction direction)
 {
 	if (currentRoom->DoesRoomHaveDoorway(direction)) {
-		setCurrentRoom(currentRoom->GetAdjecentRoom(direction));
-		currentRoom->visitRoom();
-		cout << "You entered the next room." << endl;
+		if (currentRoom->isDoorwayCollapsed(direction)) {
+			cout << "This doorway seems collapsed." << endl;
+		}
+		else {
+			setCurrentRoom(currentRoom->GetAdjecentRoom(direction));
+			currentRoom->visitRoom();
+			cout << "You entered the next room." << endl;
+		}
 	}
 	else {
 		cout << "No doorway in that direction!" << endl;

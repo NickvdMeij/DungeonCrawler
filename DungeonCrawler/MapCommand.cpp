@@ -39,31 +39,51 @@ void MapCommand::Run(list<string>* parameters, Game * game)
 				if (game->getPlayer()->getCurrentRoom() == dungeon->get(x, y)) {
 					strings[y * 2] += "C";
 				}
+				else if (game->getLevel()->getStairRoom() == dungeon->get(x, y)) {
+					strings[y * 2] += "S";
+				}
 				else {
 					strings[y * 2] += "N";
 				}
 
 				if (y > 0) {
 					if (dungeon->get(x, y)->DoesRoomHaveDoorway(Room::Direction::North)) {
+						char replaceChar = '|';
+						if (dungeon->get(x, y)->isDoorwayCollapsed(Room::Direction::North)) {
+							replaceChar = '~';
+						}
 						int replaceIndex = strings[(y * 2)].length() - 1;
-						strings[(y * 2) - 1][replaceIndex] = '|';
+						strings[(y * 2) - 1][replaceIndex] = replaceChar;
 					}
 				}
 				if (y < height - 1) {
 					if (dungeon->get(x, y)->DoesRoomHaveDoorway(Room::Direction::South)) {
+						char replaceChar = '|';
+						if (dungeon->get(x, y)->isDoorwayCollapsed(Room::Direction::South)) {
+							replaceChar = '~';
+						}
 						int replaceIndex = strings[(y * 2)].length() - 1;
-						strings[(y * 2) + 1][replaceIndex] = '|';
+						strings[(y * 2) + 1][replaceIndex] = replaceChar;
 					}
 				}
 				if (x > 0) {
 					if (dungeon->get(x, y)->DoesRoomHaveDoorway(Room::Direction::West)) {
+						char replaceChar = '-';
+						if (dungeon->get(x, y)->isDoorwayCollapsed(Room::Direction::West)) {
+							replaceChar = '~';
+						}
 						int replaceIndex = strings[y * 2].length() - 3;
-						strings[y * 2][replaceIndex] = '-';
+						strings[y * 2][replaceIndex] = replaceChar;
 					}
 				}
 				if (x < width - 1) {
 					if (dungeon->get(x, y)->DoesRoomHaveDoorway(Room::Direction::East)) {
-						strings[y * 2] += " - ";
+						if (dungeon->get(x, y)->isDoorwayCollapsed(Room::Direction::East)) {
+							strings[y * 2] += " ~ ";
+						}
+						else {
+							strings[y * 2] += " - ";
+						}
 					}
 					else {
 						strings[y * 2] += "   ";
@@ -81,4 +101,10 @@ void MapCommand::Run(list<string>* parameters, Game * game)
 	for (int x = 0; x < strings.size(); x++) {
 		std::cout << strings[x] << endl;
 	}
+	std::cout << "Legenda:" << endl;
+	std::cout << "-| : Doorway" << endl;
+	std::cout << "~  : Collapsed Doorway" << endl;
+	std::cout << "N  : Normal Room" << endl;
+	std::cout << "S  : Stair Room" << endl;
+	std::cout << "C  : Current Room" << endl;
 }

@@ -19,7 +19,7 @@ ItemFactory::~ItemFactory()
 
 Weapon* ItemFactory::CreateWeapon(int level)
 {
-	int random = RandomInt::generateInt(0, weapons.size());
+	int random = RandomInt::generateInt(0, weapons.size() - 1);
 	Weapon* w = weapons[random];
 
 	w->setLevel(level);
@@ -29,7 +29,7 @@ Weapon* ItemFactory::CreateWeapon(int level)
 
 Shield* ItemFactory::CreateShield(int level)
 {
-	int random = RandomInt::generateInt(0, shields.size());
+	int random = RandomInt::generateInt(0, shields.size() - 1);
 
 	Shield* s = shields[random];
 

@@ -8,6 +8,9 @@
 #include "LookCommand.h"
 #include "AttackCommand.h"
 #include "PlayerInfoCommand.h"
+#include "CompasCommand.h"
+#include "HandgrenadeCommand.h"
+#include "StairCommand.h"
 #include <iostream>
 
 CommandFactory::CommandFactory()
@@ -16,9 +19,12 @@ CommandFactory::CommandFactory()
 	mapping["go"] = new GoCommand();
 	mapping["map"] = new MapCommand();
 	mapping["talisman"] = new TalismanCommand();
+	mapping["compass"] = new CompasCommand();
+	mapping["grenade"] = new HandgrenadeCommand();
 	mapping["look"] = new LookCommand();
 	mapping["attack"] = new AttackCommand();
 	mapping["player"] = new PlayerInfoCommand();
+	mapping["stair"] = new StairCommand();
 }
 
 

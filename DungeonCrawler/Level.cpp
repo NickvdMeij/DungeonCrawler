@@ -7,15 +7,12 @@ Level::Level(int _width, int _height, int _floor) {
 	floor = _floor;
 
 	DungeonGenerator g;
-	//Room** rooms = g.GenerateRooms(width, height, floor);
-
 	dungeon = g.GenerateRooms(width, height, floor);
-	/*for (int x = 0; x < width; x++) {
-		for (int y = 0; y < height; y++) {
-			dungeon->put(rooms[x][y], x, y);
-		}
-	}*/
+	
 	chooseStartRoom();
+	if (floor < 4) {
+		chooseStairRoom();
+	}
 }
 
 Level::Level(const Level & other)
@@ -60,44 +57,18 @@ void Level::chooseStartRoom()
 	setStartRoom(dungeon->get(randomX, randomY));
 }
 
-void Level::printDungeon()
+void Level::chooseStairRoom()
 {
-	/*cout << "Dungeon map level "<< floor << ": " << endl;
+	int randomX = rnd.generateInt(0, width - 1);
+	int randomY = rnd.generateInt(0, height - 1);
 
-	for (int y = 0; y < height; y++)
-	{
-		for (int x = 0; x < width; x++)
-		{
-			if (dungeon.get(x, y).isVisited()) {
-				cout << "N";
-				if (dungeon.get(x, y).DoesRoomHaveDoorway(Room::Direction::East)) {
-					cout << "-";
-				}
-				else {
-					cout << " ";
-				}
-			}
-			else {
-				cout << ".";
-				cout << " ";
-			}
-		}
-		cout << endl;
-		for (int x = 0; x < width; x++)
-		{
-			if (dungeon.get(x, y).isVisited()) {
-				if (dungeon.get(x, y).DoesRoomHaveDoorway(Room::Direction::South)) {
-					cout << "|";
-				}
-				else {
-					cout << " ";
-				}
-			}
-			else {
-				cout << " ";
-			}
-			cout << " ";
-		}
-		cout << endl;
-	}*/
+	//kamer mag niet rondom start kamer zijn.
+	while ((randomX == startRoom->GetXPosition() || randomX == startRoom->GetXPosition() - 1 || randomX == startRoom->GetXPosition() + 1)
+		&& (randomY == startRoom->GetYPosition() || randomY == startRoom->GetYPosition() - 1 || randomY == startRoom->GetYPosition() + 1)) {
+		randomX = rnd.generateInt(0, width - 1);
+		randomY = rnd.generateInt(0, height - 1);
+	}
+
+	//begin bij willekeurige kamer
+	setStairRoom(dungeon->get(randomX, randomY));
 }

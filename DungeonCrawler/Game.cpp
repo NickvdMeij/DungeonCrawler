@@ -27,6 +27,13 @@ Level * Game::getLevel()
 	return level;
 }
 
+void Game::nextLevel()
+{
+	level = lf->NextLevel(level);
+	player->setCurrentRoom(level->getStartRoom());
+	player->getCurrentRoom()->visitRoom();
+}
+
 void Game::InitialSetup()
 {
 	running = true;
