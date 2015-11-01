@@ -26,7 +26,9 @@ void HandgrenadeCommand::Run(list<string>* parameters, Game * game)
 		GetMinimunEdge();
 	}
 
-	CollapseDoorways(startRoom, 5);
+	if (CollapseDoorways(startRoom, 5)) {
+		game->getPlayer()->getCurrentRoom()->getEnemy()->takeDamage(INT_MAX);
+	}
 }
 
 void HandgrenadeCommand::GetMinimunEdge() {
@@ -76,7 +78,7 @@ void HandgrenadeCommand::GetMinimunEdge() {
 
 }
 
-void HandgrenadeCommand::CollapseDoorways(Room* startRoom, int amount) {
+bool HandgrenadeCommand::CollapseDoorways(Room* startRoom, int amount) {
 	int collapsed = 0;
 	map<Room*, Room::Direction> toCollapseDoorways;
 
@@ -143,8 +145,10 @@ void HandgrenadeCommand::CollapseDoorways(Room* startRoom, int amount) {
 
 	if (collapsed > 0) {
 		std::cout << "De kerker schudt op zijn grondvesten, alle tegenstanders in de kamer zijn verslagen! Een donderend geluid maakt duidelijk dat gedeeltes van de kerker zijn ingestort..." << endl;
+		return true;
 	}
 	else {
 		std::cout << "Je vreest dat een extra handgranaat een cruciale passage zal blokkeren. Het is beter om deze niet meer te gebruiken op deze verdieping." << endl;
+		return false;
 	}
 }

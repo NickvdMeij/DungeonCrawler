@@ -7,12 +7,12 @@ using namespace std;
 class LevelFactory
 {
 private:
-	map<int, Level> levelMap;
+	map<int, Level*> levelMap;
 public:
 	LevelFactory();
 	~LevelFactory();
 
-	void Register(const int levelId, Level level);
+	void Register(const int levelId, Level* level);
 	Level* NextLevel(Level* currentLevel);
 	Level * PreviousLevel(Level * currentLevel);
 	Level* FirstLevel();
