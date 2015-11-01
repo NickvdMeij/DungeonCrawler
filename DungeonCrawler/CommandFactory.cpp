@@ -12,6 +12,7 @@
 #include "CompasCommand.h"
 #include "HandgrenadeCommand.h"
 #include "StairCommand.h"
+#include "RestCommand.h"
 #include <iostream>
 
 CommandFactory::CommandFactory()
@@ -27,6 +28,7 @@ CommandFactory::CommandFactory()
 	mapping["player"] = new PlayerInfoCommand();
 	mapping["stair"] = new StairCommand();
 	mapping["cheat"] = new CheatMapCommand();
+	mapping["rest"] = new RestCommand();
 }
 
 

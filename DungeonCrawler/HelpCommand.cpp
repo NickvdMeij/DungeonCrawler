@@ -25,4 +25,5 @@ void HelpCommand::Run(list<string>* parameters, Game* game)
 	cout << "-- attack		- Attack the enemy (if there is an enemy present in the room)" << endl;
 	cout << "-- player		- Show player info" << endl;
 	cout << "-- stair		- Take the stairs to the next level" << endl;
+	cout << "-- rest		- Your hero rests a bit to restore health" << endl;
 }

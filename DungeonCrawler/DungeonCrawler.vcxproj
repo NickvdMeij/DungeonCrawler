@@ -170,6 +170,7 @@
     <ClInclude Include="PlayerInfoCommand.h" />
     <ClInclude Include="RandomInt.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RestCommand.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Shield.h" />
     <ClInclude Include="StairCommand.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerInfoCommand.cpp" />
     <ClCompile Include="RandomInt.cpp" />
+    <ClCompile Include="RestCommand.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Shield.cpp" />
     <ClCompile Include="StairCommand.cpp" />

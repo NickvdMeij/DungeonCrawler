@@ -126,6 +126,9 @@
     <ClInclude Include="CheatMapCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RestCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -212,10 +215,13 @@
     <ClCompile Include="PlayerInfoCommand.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
-    <ClCompile Include="StairCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CheatMapCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="RestCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="StairCommand.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
   </ItemGroup>
