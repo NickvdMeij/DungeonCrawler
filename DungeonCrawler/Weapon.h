@@ -11,7 +11,7 @@ public:
 		baseDamage = i;
 	};
 	int getBaseDamage() {
-		return baseDamage;
+		return baseDamage * (5 * level);
 	}
 
 	void setLevel(int i) {

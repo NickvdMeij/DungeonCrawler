@@ -19,10 +19,10 @@ public:
 	void setCurrentHealth(int i) { currentHealth = i; }
 	int getCurrentHealth() { return currentHealth; }
 	void setTotalHealth(int i) { totalHealth = i; }
-	int getTotalHealth() { return totalHealth; }
+	int getTotalHealth() { return totalHealth * level; }
 	void setLevel(int l) { level = l; }
 	int getLevel() { return level; }
-	void setExperience(int e) { experience = e; }
+	void setExperience(int e);
 	int getExperience() { return experience; }
 	void setCurrentRoom(Room* room) { currentRoom = room; }
 	Room* getCurrentRoom() { return currentRoom; }

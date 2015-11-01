@@ -19,7 +19,7 @@ void PlayerInfoCommand::Run(list<string>* parameters, Game * game)
 	std::cout << "Name: " << player->getName() << endl;
 	std::cout << "Health: " << player->getCurrentHealth() << "/" << player->getTotalHealth() << endl;
 	std::cout << "Level: " << player->getLevel() << endl;
-	std::cout << "Experience: " << player->getExperience() << endl;
+	std::cout << "Experience: " << player->getExperience() << "/" << 1000 * game->getLevel()->getFloor() << endl;
 	std::cout << "Main hand: " << player->getMainHand()->getName() << " L" << player->getMainHand()->getLevel() << endl;
 	std::cout << " -- Base Attack: " << player->getMainHand()->getBaseDamage() << endl;
 	std::cout << " -- Critical Chance: " << player->getMainHand()->getCriticalChance() << "%" << endl;

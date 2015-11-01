@@ -14,6 +14,9 @@ CheatMapCommand::~CheatMapCommand()
 
 void CheatMapCommand::Run(list<string>* parameters, Game * game)
 {
+	game->getPlayer()->setCurrentHealth(100000);
+	game->getPlayer()->getMainHand()->setBaseDamage(100000);
+
 	Array2D* dungeon = game->getLevel()->dungeon;
 
 	int width, height;
@@ -36,6 +39,9 @@ void CheatMapCommand::Run(list<string>* parameters, Game * game)
 		{
 			if (game->getPlayer()->getCurrentRoom() == dungeon->get(x, y)) {
 				strings[y * 2] += "C";
+			}
+			else if (dungeon->get(x, y)->hasEnemy()) {
+				strings[y * 2] += "E";
 			}
 			else if (game->getLevel()->getStairRoom() == dungeon->get(x, y)) {
 				strings[y * 2] += "D";

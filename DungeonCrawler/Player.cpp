@@ -28,6 +28,19 @@ void Player::MoveDirection(Room::Direction direction)
 	}
 }
 
+void Player::setExperience(int e)
+{
+	experience += e;
+	int xpLevel = 1000 * level;
+
+	if (experience > xpLevel) {
+		experience = 0;
+		level++;
+		totalHealth = totalHealth * 2;
+		std::cout << "You have leveled up!";
+	}
+}
+
 void Player::Equip(Weapon* weapon)
 {
 	if (inventory.hasItem(*weapon)) {
