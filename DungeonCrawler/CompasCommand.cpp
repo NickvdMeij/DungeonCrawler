@@ -134,6 +134,7 @@ void CompasCommand::getPath(Room * stairRoom)
 	vector<Room*> path;
 	vector<std::string> directions;
 	Room* step = stairRoom;
+	vector<int> enemiesHp;
 
 	// check of stairRoom wel in predecessors zit
 	if (predecessors.find(stairRoom) != predecessors.end()) {
@@ -149,6 +150,10 @@ void CompasCommand::getPath(Room * stairRoom)
 			if (i > 0) {
 				Room* to = path[i];
 				Room* from = path[i - 1];
+
+				if (to->getEnemy()->isAlive()) {
+					enemiesHp.push_back(to->getEnemy()->getHealth());
+				}
 
 				if (from->GetXPosition() == to->GetXPosition()) {
 					if (from->GetYPosition() > to->GetYPosition()) {
@@ -182,10 +187,30 @@ void CompasCommand::getPath(Room * stairRoom)
 			}
 		}
 
+		//print de instructies
 		for (int i = 0; i < directions.size(); i++) {
-			std::cout << directions[i] << " - ";
+			if (i > 0) {
+				std::cout << " - ";
+			}
+			std::cout << directions[i];
 		}
 		std::cout << endl;
+
+		//print enemies info
+		if (enemiesHp.size() > 0) {
+			std::cout << enemiesHp.size() << " enemies (";
+			for (int i = 0; i < enemiesHp.size(); i++) {
+				if (i > 0) {
+					std::cout << ", ";
+				}
+				std::cout << enemiesHp[i] << " hp";
+			}
+			std::cout << ")" << endl;
+		}
+		else {
+			std::cout << "No enemies" << endl;
+		}
+		
 	}
 
 }

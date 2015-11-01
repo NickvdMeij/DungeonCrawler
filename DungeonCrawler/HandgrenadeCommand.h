@@ -5,7 +5,7 @@ class HandgrenadeCommand :
 {
 private:
 	vector<Room*> visitedRooms;
-	map<Room*, Room::Direction> doorways;
+	map<Room*, vector<Room::Direction>> doorways;
 public:
 	HandgrenadeCommand();
 	~HandgrenadeCommand();

@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="Array2D.h" />
     <ClInclude Include="AttackCommand.h" />
+    <ClInclude Include="CheatMapCommand.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="CompasCommand.h" />
@@ -180,6 +181,7 @@
   <ItemGroup>
     <ClCompile Include="Array2D.cpp" />
     <ClCompile Include="AttackCommand.cpp" />
+    <ClCompile Include="CheatMapCommand.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandFactory.cpp" />
     <ClCompile Include="CompasCommand.cpp" />

@@ -15,6 +15,9 @@ HandgrenadeCommand::~HandgrenadeCommand()
 
 void HandgrenadeCommand::Run(list<string>* parameters, Game * game)
 {
+	visitedRooms.clear();
+	doorways.clear();
+
 	Room* startRoom = game->getPlayer()->getCurrentRoom();
 	int totalRooms = game->getLevel()->dungeon->size();
 	visitedRooms.push_back(startRoom);
@@ -65,7 +68,7 @@ void HandgrenadeCommand::GetMinimunEdge() {
 		for (itr1 = itr2->second.begin(); itr1 != itr2->second.end(); itr1++)
 		{
 			if (itr2->first == minimum) {
-				doorways[itr1->first] = itr1->second;
+				doorways[itr1->first].push_back(itr1->second);
 				visitedRooms.push_back(itr1->first->GetAdjecentRoom(itr1->second));
 			}
 		}
@@ -93,25 +96,33 @@ void HandgrenadeCommand::CollapseDoorways(Room* startRoom, int amount) {
 		visitedRooms.push_back(room);
 
 		if (doorways.find(room) != doorways.end()) {
-			Room::Direction d = doorways[room];
+			vector<Room::Direction> doors = doorways[room];
 			map<Room::Direction, Room*> adjecentRooms = room->GetAdjecentRoomsMap();
-			if (adjecentRooms.size() > 1) {
-				if (room->DoesRoomHaveDoorway(Room::Direction::East) && Room::Direction::East != d && collapsed < amount) {
+			if (adjecentRooms.size() > doors.size()) {
+				if (room->DoesRoomHaveDoorway(Room::Direction::East) && find(doors.begin(), doors.end(), Room::Direction::East) == doors.end() && collapsed < amount
+					&& find(visitedRooms.begin(), visitedRooms.end(), room->GetAdjecentRoom(Room::Direction::East)) == visitedRooms.end()
+					&& adjecentRooms[Room::Direction::East] != nullptr) {
 					room->GetAdjecentRoom(Room::Direction::East)->CollapseDoorway(Room::Direction::West);
 					room->CollapseDoorway(Room::Direction::East);					
 					collapsed++;
 				}
-				if (room->DoesRoomHaveDoorway(Room::Direction::West) && Room::Direction::West != d && collapsed < amount) {
+				if (room->DoesRoomHaveDoorway(Room::Direction::West) && find(doors.begin(), doors.end(), Room::Direction::West) == doors.end() && collapsed < amount
+					&& find(visitedRooms.begin(), visitedRooms.end(), room->GetAdjecentRoom(Room::Direction::West)) == visitedRooms.end()
+					&& adjecentRooms[Room::Direction::West] != nullptr) {
 					room->GetAdjecentRoom(Room::Direction::West)->CollapseDoorway(Room::Direction::East);
 					room->CollapseDoorway(Room::Direction::West);
 					collapsed++;
 				}
-				if (room->DoesRoomHaveDoorway(Room::Direction::North) && Room::Direction::North != d && collapsed < amount) {
+				if (room->DoesRoomHaveDoorway(Room::Direction::North) && find(doors.begin(), doors.end(), Room::Direction::North) == doors.end() && collapsed < amount
+					&& find(visitedRooms.begin(), visitedRooms.end(), room->GetAdjecentRoom(Room::Direction::North)) == visitedRooms.end()
+					&& adjecentRooms[Room::Direction::North] != nullptr) {
 					room->GetAdjecentRoom(Room::Direction::North)->CollapseDoorway(Room::Direction::South);
 					room->CollapseDoorway(Room::Direction::North);
 					collapsed++;
 				}
-				if (room->DoesRoomHaveDoorway(Room::Direction::South) && Room::Direction::South != d && collapsed < amount) {
+				if (room->DoesRoomHaveDoorway(Room::Direction::South) && find(doors.begin(), doors.end(), Room::Direction::South) == doors.end() && collapsed < amount
+					&& find(visitedRooms.begin(), visitedRooms.end(), room->GetAdjecentRoom(Room::Direction::South)) == visitedRooms.end()
+					&& adjecentRooms[Room::Direction::South] != nullptr) {
 					room->GetAdjecentRoom(Room::Direction::South)->CollapseDoorway(Room::Direction::North);
 					room->CollapseDoorway(Room::Direction::South);
 					collapsed++;
@@ -128,5 +139,12 @@ void HandgrenadeCommand::CollapseDoorways(Room* startRoom, int amount) {
 			}
 
 		}
+	}
+
+	if (collapsed > 0) {
+		std::cout << "De kerker schudt op zijn grondvesten, alle tegenstanders in de kamer zijn verslagen! Een donderend geluid maakt duidelijk dat gedeeltes van de kerker zijn ingestort..." << endl;
+	}
+	else {
+		std::cout << "Je vreest dat een extra handgranaat een cruciale passage zal blokkeren. Het is beter om deze niet meer te gebruiken op deze verdieping." << endl;
 	}
 }

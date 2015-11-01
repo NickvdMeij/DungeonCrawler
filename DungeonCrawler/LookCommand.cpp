@@ -17,19 +17,19 @@ void LookCommand::Run(list<string>* parameters, Game * game)
 {
 
 	if (game->getPlayer()->getCurrentRoom()->DoesRoomHaveDoorway(Room::Direction::North)) {
-		std::cout << "This room has a doorway pointing to the north" << std::endl;
+		std::cout << "This room has a door to the north" << std::endl;
 	}
 
 	if (game->getPlayer()->getCurrentRoom()->DoesRoomHaveDoorway(Room::Direction::East)) {
-		std::cout << "This room has a doorway pointing to the east" << std::endl;
+		std::cout << "This room has a door to the east" << std::endl;
 	}
 
 	if (game->getPlayer()->getCurrentRoom()->DoesRoomHaveDoorway(Room::Direction::South)) {
-		std::cout << "This room has a doorway pointing to the south" << std::endl;
+		std::cout << "This room has a door to the south" << std::endl;
 	}
 
 	if (game->getPlayer()->getCurrentRoom()->DoesRoomHaveDoorway(Room::Direction::West)) {
-		std::cout << "This room has a doorway pointing to the west" << std::endl;
+		std::cout << "This room has a door to the west" << std::endl;
 	}
 
 	if (game->getPlayer()->getCurrentRoom()->hasEnemy()) {

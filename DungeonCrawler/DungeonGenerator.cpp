@@ -19,24 +19,12 @@ DungeonGenerator::~DungeonGenerator()
 Array2D* DungeonGenerator::GenerateRooms(int width, int height, int level)
 {
 	rooms = new Array2D(height, width);
-	/*for (int x = 0; x < width; x++) {
-		rooms[x] = new Room[height];
-	}*/
 
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
 			rooms->put(generateRandomRoom(x, y, level), x, y);
 		}
 	}
-
-	//tijdelijke prints
-	/*for (int i = 0; i < width; i++)
-	{
-	for (int j = 0; j < height; j++)
-	{
-	cout << rooms[i][j].GetDescripton() << endl;
-	}
-	}*/
 
 	GenerateDoorways(width, height);
 
@@ -55,9 +43,6 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 	//begin bij willekeurige kamer
 	Room* start = rooms->get(randomX, randomY);
 	queue.push_back(start);
-
-	//cout << endl;
-	//cout << start->GetDescripton() << endl;
 
 	while (!queue.empty()) {
 		Room* room = queue.front();
@@ -78,8 +63,8 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 				int makeDoorway = 1;
 				if (found2) {
 					//als kamer al bezocht is moet er toch een kans zijn dat er toch een doorway komt
-					int maxRoll = (width + height) / 2; //De kans is lager des te groter de dungeon
-					makeDoorway = rnd.generateInt(0, maxRoll - 2);
+					int maxRoll = (width + height) / 2 - 3; //De kans is lager des te groter de dungeon
+					makeDoorway = rnd.generateInt(0, maxRoll);
 				}
 				if (makeDoorway == 1) {
 					if (adjecent->GetXPosition() > room->GetXPosition()) {

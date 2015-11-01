@@ -5,6 +5,7 @@
 #include "GoCommand.h"
 #include "TalismanCommand.h"
 #include "MapCommand.h"
+#include "CheatMapCommand.h"
 #include "LookCommand.h"
 #include "AttackCommand.h"
 #include "PlayerInfoCommand.h"
@@ -25,6 +26,7 @@ CommandFactory::CommandFactory()
 	mapping["attack"] = new AttackCommand();
 	mapping["player"] = new PlayerInfoCommand();
 	mapping["stair"] = new StairCommand();
+	mapping["cheat"] = new CheatMapCommand();
 }
 
 
