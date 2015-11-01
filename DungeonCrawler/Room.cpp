@@ -60,7 +60,16 @@ int Room::getWeigthDoorway(Direction direction)
 
 map<Room::Direction, Room*> Room::GetAdjecentRoomsMap()
 {
-	return adjecentRooms;
+	map<Room::Direction, Room*> map;
+	typedef std::map<Direction, Room*>::iterator it_type;
+	for (it_type iterator = adjecentRooms.begin(); iterator != adjecentRooms.end(); iterator++) {
+		if (iterator->second != nullptr) {
+			map[iterator->first] = iterator->second;
+		}
+		// iterator->second = value
+	}
+
+	return map;
 }
 
 Room* Room::GetAdjecentRoom(Direction direction)
@@ -73,7 +82,9 @@ vector<Room*> Room::GetAdjecentRooms()
 	vector<Room*> rooms;
 	typedef std::map<Direction, Room*>::iterator it_type;
 	for (it_type iterator = adjecentRooms.begin(); iterator != adjecentRooms.end(); iterator++) {
-		rooms.push_back(iterator->second);
+		if (iterator->second != nullptr) {
+			rooms.push_back(iterator->second);
+		}
 		// iterator->second = value
 	}
 

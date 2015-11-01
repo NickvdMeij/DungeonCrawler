@@ -38,9 +38,9 @@ void HandgrenadeCommand::GetMinimunEdge() {
 			//als adjecentKamer nog niet bezocht is
 			if (find(visitedRooms.begin(), visitedRooms.end(), iterator->second) == visitedRooms.end()) {
 				//weight van doorway
-				int weight = iterator->second->getWeigthDoorway(iterator->first);
+				int weight = visitedRoom->getWeigthDoorway(iterator->first);
 				//availableEdges.insert(std::pair<int, map<Room*, Room::Direction>>(weight, std::pair<Room*, Room::Direction>(iterator->second, iterator->first)));
-				availableEdges[weight][iterator->second] = iterator->first;
+				availableEdges[weight][visitedRoom] = iterator->first;
 			}
 		}
 	}
@@ -66,7 +66,7 @@ void HandgrenadeCommand::GetMinimunEdge() {
 		{
 			if (itr2->first == minimum) {
 				doorways[itr1->first] = itr1->second;
-				visitedRooms.push_back(itr1->first);
+				visitedRooms.push_back(itr1->first->GetAdjecentRoom(itr1->second));
 			}
 		}
 	}
@@ -83,10 +83,10 @@ void HandgrenadeCommand::CollapseDoorways(Room* startRoom, int amount) {
 	//begin bij currentRoom
 	queue.push_back(startRoom);
 
-	while (!queue.empty()) {
-		if (collapsed == amount) {
+	while (!queue.empty() && collapsed < amount) {
+		/*if (collapsed == amount) {
 			break;
-		}
+		}*/
 		Room* room = queue.front();
 		queue.pop_front(); // haal room uit queue
 
@@ -97,18 +97,22 @@ void HandgrenadeCommand::CollapseDoorways(Room* startRoom, int amount) {
 			map<Room::Direction, Room*> adjecentRooms = room->GetAdjecentRoomsMap();
 			if (adjecentRooms.size() > 1) {
 				if (room->DoesRoomHaveDoorway(Room::Direction::East) && Room::Direction::East != d && collapsed < amount) {
-					room->CollapseDoorway(Room::Direction::East);
+					room->GetAdjecentRoom(Room::Direction::East)->CollapseDoorway(Room::Direction::West);
+					room->CollapseDoorway(Room::Direction::East);					
 					collapsed++;
 				}
 				if (room->DoesRoomHaveDoorway(Room::Direction::West) && Room::Direction::West != d && collapsed < amount) {
+					room->GetAdjecentRoom(Room::Direction::West)->CollapseDoorway(Room::Direction::East);
 					room->CollapseDoorway(Room::Direction::West);
 					collapsed++;
 				}
 				if (room->DoesRoomHaveDoorway(Room::Direction::North) && Room::Direction::North != d && collapsed < amount) {
+					room->GetAdjecentRoom(Room::Direction::North)->CollapseDoorway(Room::Direction::South);
 					room->CollapseDoorway(Room::Direction::North);
 					collapsed++;
 				}
 				if (room->DoesRoomHaveDoorway(Room::Direction::South) && Room::Direction::South != d && collapsed < amount) {
+					room->GetAdjecentRoom(Room::Direction::South)->CollapseDoorway(Room::Direction::North);
 					room->CollapseDoorway(Room::Direction::South);
 					collapsed++;
 				}
