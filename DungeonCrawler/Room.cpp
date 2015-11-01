@@ -9,7 +9,7 @@ Room::Room(int x, int y)
 {
 	xPosition = x;
 	yPosition = y;
-	visited = true;
+	visited = false;
 
 	enemy = new Enemy();
 	enemy->setIsAlive(false);
