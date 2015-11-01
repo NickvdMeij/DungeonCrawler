@@ -134,9 +134,37 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 	int randomEnemy = rnd.generateInt(0, 100);
 
 	if (chance > randomEnemy) {
+		int low = 0;
+		int high = 4;
+		if (level > 0) {
+			low = level - 1;
+		}
+		if (level < 4) {
+			high = level + 1;
+		}
+		int nameInt = rnd.generateInt(low, high);
+		string enemyName;
+
+		switch (nameInt) {
+		case 1:
+			enemyName = "Spider";
+			break;
+		case 2:
+			enemyName = "Skeleton";
+			break;
+		case 3:
+			enemyName = "Scorpion";
+			break;
+		case 4:
+			enemyName = "Ogre";
+			break;
+		default:
+			enemyName = "Goblin";
+		}
+
 		Enemy* enemy = new Enemy();
 		enemy->setIsAlive(true);
-		enemy->setName("Goblin");
+		enemy->setName(enemyName);
 		enemy->setAttack(25 * level);
 		enemy->setDefence(10 * level);
 		enemy->setHealth(100 * level);
@@ -146,7 +174,6 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 	else {
 		Enemy* enemy = new Enemy();
 		enemy->setIsAlive(false);
-		enemy->setName("Goblin");
 
 		room.setEnemy(enemy);
 	}

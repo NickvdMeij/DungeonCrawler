@@ -15,6 +15,13 @@ LookCommand::~LookCommand()
 
 void LookCommand::Run(list<string>* parameters, Game * game)
 {
+	if (game->getPlayer()->getCurrentRoom() == game->getLevel()->getStairRoom()) {
+		std::cout << "This room has a stair going down" << std::endl;
+	}
+
+	if (game->getPlayer()->getCurrentRoom() == game->getLevel()->getStartRoom() && game->getLevel()->getFloor() != 1) {
+		std::cout << "This room has a stair going up" << std::endl;
+	}
 
 	if (game->getPlayer()->getCurrentRoom()->DoesRoomHaveDoorway(Room::Direction::North)) {
 		std::cout << "This room has a door to the north" << std::endl;

@@ -14,6 +14,7 @@ public:
 
 	void Register(const int levelId, Level level);
 	Level* NextLevel(Level* currentLevel);
+	Level * PreviousLevel(Level * currentLevel);
 	Level* FirstLevel();
 };
 

@@ -28,6 +28,14 @@ Level* LevelFactory::NextLevel(Level* currentLevel)
 	return NULL;
 }
 
+Level* LevelFactory::PreviousLevel(Level* currentLevel)
+{
+	map<int, Level>::iterator it = levelMap.find(currentLevel->getFloor() - 1);
+	if (it != levelMap.end())
+		return &it->second;
+	return NULL;
+}
+
 Level* LevelFactory::FirstLevel()
 {
 	map<int, Level>::iterator it = levelMap.find(1);

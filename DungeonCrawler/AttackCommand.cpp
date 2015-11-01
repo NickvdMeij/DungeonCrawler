@@ -14,8 +14,12 @@ AttackCommand::~AttackCommand()
 void AttackCommand::Run(list<string>* parameters, Game * game) {
 	if (game->getPlayer()->getCurrentRoom()->hasEnemy()) {
 		int trueDamage = game->getPlayer()->getMainHand()->getDamage();
+		int damage = trueDamage - game->getPlayer()->getCurrentRoom()->getEnemy()->getDefence();
 
-		std::cout << "You hitted the enemy for " << trueDamage - game->getPlayer()->getCurrentRoom()->getEnemy()->getDefence() << " damage" << std::endl;
+		if (damage < 0) {
+			damage = 0;
+		}
+		std::cout << "You hitted the enemy for " << damage << " damage" << std::endl;
 
 		game->getPlayer()->getCurrentRoom()->getEnemy()->takeDamage(trueDamage);
 

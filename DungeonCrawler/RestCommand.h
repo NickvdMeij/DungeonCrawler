@@ -3,6 +3,8 @@
 class RestCommand :
 	public Command
 {
+private:
+	RandomInt rnd;
 public:
 	RestCommand();
 	~RestCommand();

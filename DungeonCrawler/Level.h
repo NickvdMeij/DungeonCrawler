@@ -8,6 +8,7 @@ private:
 	int width, height, floor;
 	Room* startRoom;
 	Room* stairRoom;
+	Room* bossRoom;
 	RandomInt rnd;
 public:
 	Array2D* dungeon;
@@ -17,9 +18,12 @@ public:
 	~Level();
 	Level& operator=(const Level& other); // copy assignment
 	void chooseStartRoom();
+	void chooseBossRoom();
 	void chooseStairRoom();
 	void setStartRoom(Room* room) { startRoom = room; }
 	void setStairRoom(Room* room) { stairRoom = room; }
+	void setBossRoom(Room* room) { bossRoom = room; }
+	Room* getBossRoom() { return bossRoom; }
 	Room* getStartRoom() { return startRoom; }
 	Room* getStairRoom() { return stairRoom; }
 	int getFloor() { return floor; }

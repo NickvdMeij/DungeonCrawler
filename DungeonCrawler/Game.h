@@ -15,6 +15,7 @@ public:
 	bool isRunning() { return running; };
 	void finish() { running = false; };
 	void nextLevel();
+	void previousLevel();
 private:
 	Level* level;
 	bool running;

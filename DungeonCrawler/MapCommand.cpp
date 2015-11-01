@@ -40,7 +40,18 @@ void MapCommand::Run(list<string>* parameters, Game * game)
 					strings[y * 2] += "C";
 				}
 				else if (game->getLevel()->getStairRoom() == dungeon->get(x, y)) {
-					strings[y * 2] += "S";
+					strings[y * 2] += "D";
+				}
+				else if (game->getLevel()->getStartRoom() == dungeon->get(x, y)) {
+					if (game->getLevel()->getFloor() == 1) {
+						strings[y * 2] += "S";
+					}
+					else {
+						strings[y * 2] += "U";
+					}
+				}
+				else if (game->getLevel()->getBossRoom() == dungeon->get(x, y)) {
+					strings[y * 2] += "B";
 				}
 				else {
 					strings[y * 2] += "N";
@@ -104,7 +115,10 @@ void MapCommand::Run(list<string>* parameters, Game * game)
 	std::cout << "Legenda:" << endl;
 	std::cout << "-| : Doorway" << endl;
 	std::cout << "~  : Collapsed Doorway" << endl;
+	std::cout << "S  : Start Room" << endl;
 	std::cout << "N  : Normal Room" << endl;
-	std::cout << "S  : Stair Room" << endl;
+	std::cout << "D  : Stair Down Room" << endl;
+	std::cout << "U  : Stair Up Room" << endl;
 	std::cout << "C  : Current Room" << endl;
+	std::cout << "B  : Boss Room" << endl;
 }

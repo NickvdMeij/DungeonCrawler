@@ -34,6 +34,12 @@ void Game::nextLevel()
 	player->getCurrentRoom()->visitRoom();
 }
 
+void Game::previousLevel()
+{
+	level = lf->PreviousLevel(level);
+	player->setCurrentRoom(level->getStairRoom());
+}
+
 void Game::InitialSetup()
 {
 	running = true;
