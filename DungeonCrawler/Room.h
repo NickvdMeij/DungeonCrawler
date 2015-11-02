@@ -12,22 +12,41 @@ public:
 	enum Size {
 		Big,
 		Medium,
-		Small
+		Small,
+		Enormous,
+		Tiny,
+		Gigantic
 	};
 	enum Lighting {
 		Candle,
 		Fireplace,
-		Torch
+		Torch,
+		DiscoFever,
+		Window,
+		Creek,
+		Lamp,
+		Holyball,
+		Spotlight
 	};
 	enum Furniture {
 		Table,
 		Bed,
-		Seat
+		Seat,
+		Closet,
+		Bench,
+		Lounge,
+		Television,
+		Trashcan
 	};
 	enum Atmosfeer {
 		Stinky,
 		Clean,
-		Messy
+		Messy,
+		Foggy,
+		Dense,
+		Cloudy,
+		Romantic,
+		Cosy
 	};
 	enum Direction {
 		North,

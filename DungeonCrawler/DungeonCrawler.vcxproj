@@ -168,6 +168,7 @@
     <ClInclude Include="MapCommand.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerInfoCommand.h" />
+    <ClInclude Include="QuitCommand.h" />
     <ClInclude Include="RandomInt.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RestCommand.h" />
@@ -203,6 +204,7 @@
     <ClCompile Include="MapCommand.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerInfoCommand.cpp" />
+    <ClCompile Include="QuitCommand.cpp" />
     <ClCompile Include="RandomInt.cpp" />
     <ClCompile Include="RestCommand.cpp" />
     <ClCompile Include="Room.cpp" />

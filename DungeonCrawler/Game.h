@@ -13,7 +13,7 @@ public:
 	Player* getPlayer();
 	Level* getLevel();
 	bool isRunning() { return running; };
-	void finish() { running = false; };
+	void finish();
 	void nextLevel();
 	void previousLevel();
 private:

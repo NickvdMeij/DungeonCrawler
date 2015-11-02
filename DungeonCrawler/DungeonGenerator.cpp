@@ -181,12 +181,11 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 	int difficulty = rnd.generateInt(1, 20);
 	room.setDifficulty(difficulty);
 
-
 	//0 tot 2 omdat je maar 3 opties zijn per kenmerk
-	int randomSize = rnd.generateInt(0, 2);
-	int randomLighting = rnd.generateInt(0, 2);
-	int randomFurniture = rnd.generateInt(0, 2);
-	int randomAtmosfeer = rnd.generateInt(0, 2);
+	int randomSize = rnd.generateInt(0, 5);
+	int randomLighting = rnd.generateInt(0, 8);
+	int randomFurniture = rnd.generateInt(0, 7);
+	int randomAtmosfeer = rnd.generateInt(0, 7);
 
 	switch (randomSize) {
 	case 0:
@@ -197,6 +196,15 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 		break;
 	case 2:
 		room.setSize(Room::Size::Big);
+		break;
+	case 3:
+		room.setSize(Room::Size::Enormous);
+		break;
+	case 4:
+		room.setSize(Room::Size::Gigantic);
+		break;
+	case 5:
+		room.setSize(Room::Size::Tiny);
 		break;
 	}
 
@@ -210,6 +218,21 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 	case 2:
 		room.setLighting(Room::Lighting::Torch);
 		break;
+	case 3:
+		room.setLighting(Room::Lighting::Creek);
+		break;
+	case 4:
+		room.setLighting(Room::Lighting::DiscoFever);
+		break;
+	case 5:
+		room.setLighting(Room::Lighting::Holyball);
+		break;
+	case 6:
+		room.setLighting(Room::Lighting::Lamp);
+		break;
+	case 7:
+		room.setLighting(Room::Lighting::Spotlight);
+		break;
 	}
 
 	switch (randomAtmosfeer) {
@@ -222,6 +245,21 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 	case 2:
 		room.setAtmosfeer(Room::Atmosfeer::Stinky);
 		break;
+	case 3:
+		room.setAtmosfeer(Room::Atmosfeer::Romantic);
+		break;
+	case 4:
+		room.setAtmosfeer(Room::Atmosfeer::Cloudy);
+		break;
+	case 5:
+		room.setAtmosfeer(Room::Atmosfeer::Cosy);
+		break;
+	case 6:
+		room.setAtmosfeer(Room::Atmosfeer::Foggy);
+		break;
+	case 7:
+		room.setAtmosfeer(Room::Atmosfeer::Dense);
+		break;
 	}
 
 	switch (randomFurniture) {
@@ -233,6 +271,21 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 		break;
 	case 2:
 		room.setFurniture(Room::Furniture::Table);
+		break;
+	case 3:
+		room.setFurniture(Room::Furniture::Bench);
+		break;
+	case 4:
+		room.setFurniture(Room::Furniture::Closet);
+		break;
+	case 5:
+		room.setFurniture(Room::Furniture::Television);
+		break;
+	case 6:
+		room.setFurniture(Room::Furniture::Trashcan);
+		break;
+	case 7:
+		room.setFurniture(Room::Furniture::Lounge);
 		break;
 	}
 

@@ -13,6 +13,8 @@ GameController::GameController()
 
 GameController::~GameController()
 {
+	delete game;
+	game = nullptr;
 }
 
 // Run the gameloop

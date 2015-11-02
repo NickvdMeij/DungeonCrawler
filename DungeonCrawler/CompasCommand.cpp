@@ -67,7 +67,7 @@ void CompasCommand::findMinimalDistances(Room * room)
 
 	if (room->DoesRoomHaveDoorway(Room::Direction::North)) {
 		Room* adjecent = room->GetAdjecentRoom(Room::Direction::North);
-		if (!isSettled(adjecent) && getShortestDistance(adjecent) > getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::North)) {
+		if (!isSettled(adjecent) && getShortestDistance(adjecent) > getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::North) && room->GetAdjecentRoom(Room::Direction::North) != nullptr) {
 			distance.insert(std::pair<Room*, int>(adjecent, getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::North)));
 			predecessors.insert(std::pair<Room*, Room*>(adjecent, room));
 			unsettledRooms.push_back(adjecent);
@@ -75,7 +75,7 @@ void CompasCommand::findMinimalDistances(Room * room)
 	}
 	if (room->DoesRoomHaveDoorway(Room::Direction::East)) {
 		Room* adjecent = room->GetAdjecentRoom(Room::Direction::East);
-		if (!isSettled(adjecent) && getShortestDistance(adjecent) > getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::East)) {
+		if (!isSettled(adjecent) && getShortestDistance(adjecent) > getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::East) && room->GetAdjecentRoom(Room::Direction::East) != nullptr) {
 			distance.insert(std::pair<Room*, int>(adjecent, getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::East)));
 			predecessors.insert(std::pair<Room*, Room*>(adjecent, room));
 			unsettledRooms.push_back(adjecent);
@@ -83,7 +83,7 @@ void CompasCommand::findMinimalDistances(Room * room)
 	}
 	if (room->DoesRoomHaveDoorway(Room::Direction::South)) {
 		Room* adjecent = room->GetAdjecentRoom(Room::Direction::South);
-		if (!isSettled(adjecent) && getShortestDistance(adjecent) > getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::South)) {
+		if (!isSettled(adjecent) && getShortestDistance(adjecent) > getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::South) && room->GetAdjecentRoom(Room::Direction::South) != nullptr) {
 			distance.insert(std::pair<Room*, int>(adjecent, getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::South)));
 			predecessors.insert(std::pair<Room*, Room*>(adjecent, room));
 			unsettledRooms.push_back(adjecent);
@@ -91,7 +91,7 @@ void CompasCommand::findMinimalDistances(Room * room)
 	}
 	if (room->DoesRoomHaveDoorway(Room::Direction::West)) {
 		Room* adjecent = room->GetAdjecentRoom(Room::Direction::West);
-		if (!isSettled(adjecent) && getShortestDistance(adjecent) > getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::West)) {
+		if (!isSettled(adjecent) && getShortestDistance(adjecent) > getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::West) && room->GetAdjecentRoom(Room::Direction::West) != nullptr) {
 			distance.insert(std::pair<Room*, int>(adjecent, getShortestDistance(room) + room->getWeigthDoorway(Room::Direction::West)));
 			predecessors.insert(std::pair<Room*, Room*>(adjecent, room));
 			unsettledRooms.push_back(adjecent);

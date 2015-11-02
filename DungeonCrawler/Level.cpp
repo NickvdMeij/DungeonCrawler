@@ -29,8 +29,14 @@ Level::Level(const Level & other)
 }
 
 Level::~Level() {
-	//startRoom = nullptr;
-	//stairRoom = nullptr;
+	delete dungeon;
+	//delete startRoom;
+	//delete stairRoom;
+	//delete bossRoom;
+	dungeon = nullptr;
+	startRoom = nullptr;
+	stairRoom = nullptr;
+	bossRoom = nullptr;
 }
 
 Level& Level::operator=(const Level & other)

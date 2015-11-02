@@ -23,6 +23,14 @@ void GoCommand::Run(list<string>* parameters, Game* game)
 	if (it != directions.end()) {
 		d = it->second;
 		game->getPlayer()->MoveDirection(d);
+
+		const int trapChance = 20;
+		int random = RandomInt::generateInt(0, 100);
+
+		if (trapChance > random) {
+			game->getPlayer()->setCurrentHealth(game->getPlayer()->getCurrentHealth() - 10);
+			std::cout << "There was a trap in the next room, you activated it by accident and lost 10hp" << std::endl;
+		}
 	}
 	else {
 		cout << "Second part of command is unknown." << endl;

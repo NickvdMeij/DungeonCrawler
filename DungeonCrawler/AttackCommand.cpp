@@ -30,7 +30,7 @@ void AttackCommand::Run(list<string>* parameters, Game * game) {
 			std::cout << "You recieved 200xp!" << std::endl;
 			game->getPlayer()->setExperience(game->getPlayer()->getExperience() + 200);
 
-			int dropChance = 50;
+			int dropChance = 101;
 			int random = RandomInt::generateInt(0, 100);
 
 			if (dropChance >= random) {

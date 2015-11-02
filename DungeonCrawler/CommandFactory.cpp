@@ -13,6 +13,7 @@
 #include "HandgrenadeCommand.h"
 #include "StairCommand.h"
 #include "RestCommand.h"
+#include "QuitCommand.h"
 #include <iostream>
 
 CommandFactory::CommandFactory()
@@ -28,12 +29,19 @@ CommandFactory::CommandFactory()
 	mapping["player"] = new PlayerInfoCommand();
 	mapping["stair"] = new StairCommand();
 	mapping["cheat"] = new CheatMapCommand();
-	mapping["rest"] = new RestCommand();
+	mapping["rest"] = new RestCommand(); 
+	mapping["quit"] = new QuitCommand();
 }
 
 
 CommandFactory::~CommandFactory()
 {
+	typedef std::map<string, Command*>::iterator it_type;
+	for (it_type iterator = mapping.begin(); iterator != mapping.end(); iterator++) {
+		iterator->second->~Command();
+		// iterator->second = value
+	}
+	mapping.clear();
 }
 
 

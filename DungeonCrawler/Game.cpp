@@ -27,6 +27,16 @@ Level * Game::getLevel()
 	return level;
 }
 
+void Game::finish()
+{
+	running = false;
+	delete lf;
+	lf = nullptr;
+	delete player;
+	player = nullptr;
+	level = nullptr;
+}
+
 void Game::nextLevel()
 {
 	level = lf->NextLevel(level);
