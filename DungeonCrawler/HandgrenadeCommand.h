@@ -11,6 +11,6 @@ public:
 	~HandgrenadeCommand();
 	void Run(list<string>* parameters, Game* game);
 	void GetMinimunEdge();
-	void CollapseDoorways(Room* startRoom, int amount);
+	bool CollapseDoorways(Room* startRoom, int amount);
 };
 
