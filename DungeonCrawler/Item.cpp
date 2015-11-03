@@ -9,4 +9,5 @@ Item::Item()
 
 Item::~Item()
 {
+	cout << "item destuctor" << endl;
 }

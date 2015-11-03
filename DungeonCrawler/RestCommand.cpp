@@ -27,7 +27,7 @@ void RestCommand::Run(list<string>* parameters, Game * game)
 			enemy->setDefence(10 * game->getLevel()->getFloor());
 			enemy->setHealth(100 * game->getLevel()->getFloor());
 
-			delete p->getCurrentRoom()->getEnemy();
+			//delete p->getCurrentRoom()->getEnemy();
 			p->getCurrentRoom()->setEnemy(enemy);
 			p->setCurrentHealth(p->getCurrentHealth() + (restAmount / 2));
 			std::cout << "Halfway your rest you got interrupted by an enemy!" << endl;

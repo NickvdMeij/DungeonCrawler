@@ -58,6 +58,8 @@ void CommandFactory::CreateCommand(string commandString, list<string>* parameter
 		cout << "That command is not available, please pick another command or type 'help' for a list with available commands" << endl;
 		cout << endl;
 	}
+
+	delete[] parameters;
 	
 }
 

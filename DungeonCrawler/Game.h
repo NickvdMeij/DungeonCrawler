@@ -4,6 +4,7 @@
 #include "Level.h"
 #include "Enemy.h"
 #include "LevelFactory.h"
+#include "ItemFactory.h"
 
 class Game
 {

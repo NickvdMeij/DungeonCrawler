@@ -10,6 +10,7 @@ Command::Command()
 
 Command::~Command()
 {
+	std::cout << "command baseclass destructor" << endl;
 }
 
 void Command::Run(list<string>* parameters, Game * game)

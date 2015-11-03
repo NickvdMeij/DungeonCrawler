@@ -93,6 +93,9 @@ void DungeonGenerator::GenerateDoorways(Array2D* rooms, int width, int height)
 			}
 		}
 	}
+
+	queue.clear();
+	visitedRooms.clear();
 }
 
 

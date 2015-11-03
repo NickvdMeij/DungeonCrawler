@@ -10,6 +10,7 @@ Weapon::Weapon()
 
 Weapon::~Weapon()
 {
+	cout << "weapon destuctor" << endl;
 }
 
 int Weapon::getDamage()

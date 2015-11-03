@@ -10,6 +10,7 @@ CompasCommand::CompasCommand()
 
 CompasCommand::~CompasCommand()
 {
+	cout << "compass destructor" << endl;
 }
 
 void CompasCommand::Run(list<string>* parameters, Game * game)
@@ -37,7 +38,7 @@ void CompasCommand::Run(list<string>* parameters, Game * game)
 
 	getPath(game->getLevel()->getStairRoom());
 
-	delete startRoom;
+	//delete startRoom;
 }
 
 Room * CompasCommand::getMinimum(vector<Room*> unsettledRooms)
