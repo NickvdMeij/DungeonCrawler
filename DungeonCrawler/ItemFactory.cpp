@@ -15,6 +15,20 @@ ItemFactory::ItemFactory()
 
 ItemFactory::~ItemFactory()
 {
+	for (int x = 0; x < weapons.size(); x++) {
+		
+		delete weapons[x];
+		weapons[x] = nullptr;
+	}
+
+	for (int x = 0; x < shields.size(); x++) {
+		
+		delete shields[x];
+		shields[x] = nullptr;
+	}
+
+	weapons.clear();
+	shields.clear();
 }
 
 Weapon* ItemFactory::CreateWeapon(int level)

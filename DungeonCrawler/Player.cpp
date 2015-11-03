@@ -9,6 +9,14 @@ Player::Player()
 
 Player::~Player()
 {
+	
+	delete mainHand;
+	mainHand = nullptr;
+	
+	delete offHand;
+	offHand = nullptr;
+
+	currentRoom = nullptr;
 }
 
 void Player::MoveDirection(Room::Direction direction)
@@ -38,22 +46,6 @@ void Player::setExperience(int e)
 		level++;
 		totalHealth = totalHealth * 2;
 		std::cout << "You have leveled up!";
-	}
-}
-
-void Player::Equip(Weapon* weapon)
-{
-	if (inventory.hasItem(*weapon)) {
-		inventory.removeItem(*weapon);
-		setMainHand(weapon);
-	}
-}
-
-void Player::Equip(Shield* shield)
-{
-	if (inventory.hasItem(*shield)) {
-		inventory.removeItem(*shield);
-		setOffHand(shield);
 	}
 }
 

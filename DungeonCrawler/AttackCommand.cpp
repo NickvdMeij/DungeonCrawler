@@ -57,6 +57,7 @@ void AttackCommand::Run(list<string>* parameters, Game * game) {
 						getline(cin, input);
 
 						if (input == "y") {
+							delete game->getPlayer()->getMainHand();
 							game->getPlayer()->setMainHand(weapon);
 							incorrect = false;
 						}
@@ -88,6 +89,7 @@ void AttackCommand::Run(list<string>* parameters, Game * game) {
 						getline(cin, input);
 
 						if (input == "y") {
+							delete game->getPlayer()->getOffHand();
 							game->getPlayer()->setOffHand(shield);
 							incorrect = false;
 						}
@@ -99,6 +101,8 @@ void AttackCommand::Run(list<string>* parameters, Game * game) {
 						}
 					}
 				}
+
+				delete itemFact;
 			}
 		}
 		else {

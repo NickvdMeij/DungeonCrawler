@@ -38,9 +38,10 @@ CommandFactory::~CommandFactory()
 {
 	typedef std::map<string, Command*>::iterator it_type;
 	for (it_type iterator = mapping.begin(); iterator != mapping.end(); iterator++) {
-		iterator->second->~Command();
-		// iterator->second = value
+		delete iterator->second;
+		iterator->second = nullptr;
 	}
+
 	mapping.clear();
 }
 

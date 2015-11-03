@@ -13,7 +13,6 @@ public:
 private:
 	CommandFactory commandFactory;
 	Game* game;
-	ItemFactory* itemFactory;
 	void Listen();
 	void Run();
 

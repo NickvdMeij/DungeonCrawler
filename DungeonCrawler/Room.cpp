@@ -39,9 +39,9 @@ Room::Room(const Room & other)
 
 Room::~Room()
 {
-	//delete enemy;
+	delete enemy;
 	enemy = nullptr;
-	adjecentRooms.clear();
+	//adjecentRooms.clear();
 }
 
 string Room::GetDescripton()

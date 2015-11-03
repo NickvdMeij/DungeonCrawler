@@ -6,8 +6,8 @@ Level::Level(int _width, int _height, int _floor) {
 	height = _height;
 	floor = _floor;
 
-	DungeonGenerator g;
-	dungeon = g.GenerateRooms(width, height, floor);
+	DungeonGenerator* g = new DungeonGenerator();
+	dungeon = g->GenerateRooms(width, height, floor);
 	
 	chooseStartRoom();
 	if (floor < 4) {
@@ -16,45 +16,18 @@ Level::Level(int _width, int _height, int _floor) {
 	else {
 		chooseBossRoom();
 	}
+
+	delete g;
+	g = nullptr;
 }
 
-Level::Level(const Level & other)
+Level::~Level()
 {
-	startRoom = other.startRoom;
-	stairRoom = other.stairRoom;
-	floor = other.floor;
-	width = other.width;
-	height = other.height;
-	dungeon = other.dungeon;
-}
-
-Level::~Level() {
 	delete dungeon;
-	//delete startRoom;
-	//delete stairRoom;
-	//delete bossRoom;
 	dungeon = nullptr;
 	startRoom = nullptr;
 	stairRoom = nullptr;
 	bossRoom = nullptr;
-}
-
-Level& Level::operator=(const Level & other)
-{
-	if (this != &other) {
-		//delete startRoom;
-		//delete stairRoom;
-		//startRoom = nullptr;
-		//stairRoom = nullptr;
-		//dungeon->~Array2D();
-		startRoom = other.startRoom;
-		stairRoom = other.stairRoom;
-		floor = other.floor;
-		width = other.width;
-		height = other.height;
-		dungeon = other.dungeon;
-	}
-	return *this;
 }
 
 void Level::chooseStartRoom()
@@ -98,7 +71,6 @@ void Level::chooseBossRoom()
 		enemy->setDefence(15 * floor);
 		enemy->setHealth(150 * floor);
 	}
-
 
 	bossRoom->setEnemy(enemy);
 }

@@ -18,7 +18,7 @@ DungeonGenerator::~DungeonGenerator()
 
 Array2D* DungeonGenerator::GenerateRooms(int width, int height, int level)
 {
-	rooms = new Array2D(height, width);
+	Array2D* rooms = new Array2D(height, width);
 
 	for (int x = 0; x < width; x++) {
 		for (int y = 0; y < height; y++) {
@@ -26,19 +26,19 @@ Array2D* DungeonGenerator::GenerateRooms(int width, int height, int level)
 		}
 	}
 
-	GenerateDoorways(width, height);
+	GenerateDoorways(rooms, width, height);
 
 	return rooms;
 }
 
 //methode heeft nog aardig wat c++ errors
-void DungeonGenerator::GenerateDoorways(int width, int height)
+void DungeonGenerator::GenerateDoorways(Array2D* rooms, int width, int height)
 {
 	deque<Room*> queue;
 	vector<Room*> visitedRooms;
 
-	int randomX = rnd.generateInt(0, width - 1);
-	int randomY = rnd.generateInt(0, height - 1);
+	int randomX = RandomInt::generateInt(0, width - 1);
+	int randomY = RandomInt::generateInt(0, height - 1);
 
 	//begin bij willekeurige kamer
 	Room* start = rooms->get(randomX, randomY);
@@ -53,7 +53,7 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 			visitedRooms.push_back(room);
 		}
 
-		for (Room* adjecent : GetAdjecentRooms(room, width, height)) {
+		for (Room* adjecent : GetAdjecentRooms(rooms, room, width, height)) {
 			bool found1 = find(queue.begin(), queue.end(), adjecent) != queue.end();
 			bool found2 = find(visitedRooms.begin(), visitedRooms.end(), adjecent) != visitedRooms.end();
 
@@ -64,7 +64,7 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 				if (found2) {
 					//als kamer al bezocht is moet er toch een kans zijn dat er toch een doorway komt
 					int maxRoll = (width + height) / 2 - 3; //De kans is lager des te groter de dungeon
-					makeDoorway = rnd.generateInt(0, maxRoll);
+					makeDoorway = RandomInt::generateInt(0, maxRoll);
 				}
 				if (makeDoorway == 1) {
 					if (adjecent->GetXPosition() > room->GetXPosition()) {
@@ -93,12 +93,10 @@ void DungeonGenerator::GenerateDoorways(int width, int height)
 			}
 		}
 	}
-
-	//PrintDungeon(width, height);
 }
 
 
-vector<Room*> DungeonGenerator::GetAdjecentRooms(Room* room, int width, int height)
+vector<Room*> DungeonGenerator::GetAdjecentRooms(Array2D* rooms, Room* room, int width, int height)
 {
 	vector<Room*> adjecentRooms;
 
@@ -131,7 +129,7 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 	Room room(xPos, yPos);
 
 	int chance = 20;
-	int randomEnemy = rnd.generateInt(0, 100);
+	int randomEnemy = RandomInt::generateInt(0, 100);
 
 	if (chance > randomEnemy) {
 		int low = 0;
@@ -142,7 +140,7 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 		if (level < 4) {
 			high = level + 1;
 		}
-		int nameInt = rnd.generateInt(low, high);
+		int nameInt = RandomInt::generateInt(low, high);
 		string enemyName;
 
 		switch (nameInt) {
@@ -178,14 +176,14 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 		room.setEnemy(enemy);
 	}
 
-	int difficulty = rnd.generateInt(1, 20);
+	int difficulty = RandomInt::generateInt(1, 20);
 	room.setDifficulty(difficulty);
 
 	//0 tot 2 omdat je maar 3 opties zijn per kenmerk
-	int randomSize = rnd.generateInt(0, 5);
-	int randomLighting = rnd.generateInt(0, 8);
-	int randomFurniture = rnd.generateInt(0, 7);
-	int randomAtmosfeer = rnd.generateInt(0, 7);
+	int randomSize = RandomInt::generateInt(0, 5);
+	int randomLighting = RandomInt::generateInt(0, 8);
+	int randomFurniture = RandomInt::generateInt(0, 7);
+	int randomAtmosfeer = RandomInt::generateInt(0, 7);
 
 	switch (randomSize) {
 	case 0:

@@ -31,8 +31,6 @@ public:
 	Shield* getOffHand() { return offHand; }
 	void setMainHand(Weapon* weapon) { mainHand = weapon; }
 	void setOffHand(Shield* shield) { offHand = shield; }
-	void Equip(Weapon* weapon);
-	void Equip(Shield* shield);
 	void TakeDamage(int amount);
 private:
 	Weapon* mainHand;

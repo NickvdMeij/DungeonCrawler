@@ -15,7 +15,7 @@ int main()
 
 	GameController* gameController = new GameController();
 	delete gameController;
-	gameController = nullptr;
+	
     return 0;
 }
 

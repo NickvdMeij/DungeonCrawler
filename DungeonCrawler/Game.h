@@ -21,7 +21,6 @@ private:
 	bool running;
 	LevelFactory* lf;
 	Player* player;
-	std::list<Enemy*> enemies;
 	void InitialSetup();
 };
 

@@ -13,10 +13,7 @@ private:
 public:
 	Array2D* dungeon;
 	Level(int width, int height, int floor);
-	Level() {}
-	Level(const Level& other); // copy constructor
 	~Level();
-	Level& operator=(const Level& other); // copy assignment
 	void chooseStartRoom();
 	void chooseBossRoom();
 	void chooseStairRoom();

@@ -12,10 +12,11 @@ LevelFactory::LevelFactory()
 
 LevelFactory::~LevelFactory()
 {
-	levelMap[1]->~Level();
-	levelMap[2]->~Level();
-	levelMap[3]->~Level();
-	levelMap[4]->~Level();
+	delete levelMap[1];
+	delete levelMap[2];
+	delete levelMap[3];
+	delete levelMap[4];
+
 	levelMap.clear();
 }
 

@@ -15,6 +15,13 @@ Game::Game()
 
 Game::~Game()
 {
+	level = nullptr;
+
+	delete player;
+	player = nullptr;
+
+	delete lf;
+	lf = nullptr;
 }
 
 Player* Game::getPlayer()
@@ -30,11 +37,6 @@ Level * Game::getLevel()
 void Game::finish()
 {
 	running = false;
-	delete lf;
-	lf = nullptr;
-	delete player;
-	player = nullptr;
-	level = nullptr;
 }
 
 void Game::nextLevel()
