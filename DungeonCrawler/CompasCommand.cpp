@@ -36,6 +36,8 @@ void CompasCommand::Run(list<string>* parameters, Game * game)
 	}
 
 	getPath(game->getLevel()->getStairRoom());
+
+	delete startRoom;
 }
 
 Room * CompasCommand::getMinimum(vector<Room*> unsettledRooms)

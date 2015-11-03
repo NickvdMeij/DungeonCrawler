@@ -53,4 +53,7 @@ void TalismanCommand::Run(list<string>* parameters, Game * game)
 	}
 
 	cout << "De talisman licht op en fluistert dat de trap omhoog " << amountOfRoomsAway << " kamers ver weg is." << endl;
+
+	queue.clear();
+	visitedRooms.clear();
 }
