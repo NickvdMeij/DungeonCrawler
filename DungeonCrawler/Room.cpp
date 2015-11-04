@@ -26,7 +26,14 @@ Room::Room()
 Room::Room(const Room & other)
 {
 	//cout << "room copy constructor" << endl;
-	enemy = other.enemy;
+
+	enemy = new Enemy();
+	enemy->setAttack(other.enemy->getAttack());
+	enemy->setDefence(other.enemy->getDefence());
+	enemy->setHealth(other.enemy->getHealth());
+	enemy->setName(other.enemy->getName());
+	enemy->setIsAlive(other.enemy->isAlive());
+
 	xPosition = other.xPosition;
 	yPosition = other.yPosition;
 	adjecentRooms = other.adjecentRooms;

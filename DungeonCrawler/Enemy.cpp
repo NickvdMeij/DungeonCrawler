@@ -9,7 +9,7 @@ Enemy::Enemy()
 
 Enemy::~Enemy()
 {
-	std::cout << "enemy destructor" << std::endl;
+	//std::cout << "enemy destructor" << std::endl;
 }
 
 void Enemy::takeDamage(int damage)

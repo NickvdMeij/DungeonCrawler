@@ -73,7 +73,7 @@ void Game::InitialSetup()
 	player->setMainHand(w);
 	player->setOffHand(s);
 
-	delete itemFactory;
+	//delete itemFactory;
 
 }
 

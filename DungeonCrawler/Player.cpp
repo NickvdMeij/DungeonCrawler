@@ -2,8 +2,9 @@
 #include "Player.h"
 
 
-Player::Player()
+Player::Player() :mainHand{ nullptr }, offHand{ nullptr }
 {
+
 }
 
 
