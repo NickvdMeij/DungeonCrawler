@@ -27,7 +27,9 @@ void HandgrenadeCommand::Run(list<string>* parameters, Game * game)
 	}
 
 	if (CollapseDoorways(startRoom, 5)) {
-		game->getPlayer()->getCurrentRoom()->getEnemy()->takeDamage(INT_MAX);
+		if (game->getPlayer()->getCurrentRoom()->hasEnemy()) {
+			game->getPlayer()->getCurrentRoom()->getEnemy()->takeDamage(INT_MAX);
+		}
 	}
 }
 

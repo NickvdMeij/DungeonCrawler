@@ -51,5 +51,44 @@ void LookCommand::Run(list<string>* parameters, Game * game)
 		std::cout << "Enemy Defence: " << game->getPlayer()->getCurrentRoom()->getEnemy()->getDefence() << std::endl;
 	}
 
-	//find weapon and equip or leave on the ground
+	if (game->getPlayer()->getCurrentRoom()->isTrapped()) {
+		std::cout << std::endl;
+		std::cout << "!!! This room has a trap !!!" << std::endl;
+		bool incorrect = true;
+
+		while (incorrect) {
+			std::cout << "Would you like to disarm the trap? (y/n)";
+
+			std::string input;
+			getline(cin, input);
+
+			if (input == "y") {
+				int trapChance = 60 + (game->getPlayer()->getLevel() * 5);
+				int randomTrap = RandomInt::generateInt(0, 100);
+
+				if (trapChance > randomTrap) {
+					game->getPlayer()->getCurrentRoom()->setTrapped(false);
+					std::cout << "You succesfully disarmed the trap";
+				}
+				else {
+					game->getPlayer()->getCurrentRoom()->setTrapped(false);
+					std::cout << "Disarming failed, the trap triggered and you lost 20 hp";
+					game->getPlayer()->setCurrentHealth(game->getPlayer()->getCurrentHealth() - 20);
+					if (game->getPlayer()->getCurrentHealth() < 0) {
+						std::cout << "Your died... GAME OVER!" << endl;
+						game->finish();
+
+						cin.get();
+					}
+				}
+				incorrect = false;
+			}
+			else if (input == "n") {
+				incorrect = false;
+			}
+			else {
+				std::cout << "Wrong input" << endl;
+			}
+		}
+	}
 }

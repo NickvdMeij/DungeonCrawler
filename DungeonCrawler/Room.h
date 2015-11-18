@@ -83,6 +83,8 @@ public:
 	void setFurniture(Furniture f) { furniture = f; }
 	bool isVisited() { return visited; }
 	void visitRoom();
+	bool isTrapped() { return trapped; }
+	void setTrapped(bool t) { trapped = t; }
 	bool hasEnemy() { 
 		if (enemy == nullptr) { return false; }
 		return enemy->isAlive();
@@ -100,6 +102,7 @@ private:
 	map<Direction, int> weightDoorways;
 	int xPosition, yPosition, distanceFromCurrentRoom, difficulty;
 	bool visited;
+	bool trapped;
 	Atmosfeer atmosfeer;
 	Furniture furniture;
 	Lighting lighting;

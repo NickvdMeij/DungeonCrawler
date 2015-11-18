@@ -131,6 +131,13 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 {
 	Room room(xPos, yPos);
 
+	int trapChance = 20;
+	int randomTrap = RandomInt::generateInt(0, 100);
+
+	if (trapChance > randomTrap) {
+		room.setTrapped(true);
+	}
+
 	int chance = 20;
 	int randomEnemy = RandomInt::generateInt(0, 100);
 

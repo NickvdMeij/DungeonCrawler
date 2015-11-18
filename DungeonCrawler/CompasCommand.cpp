@@ -154,7 +154,7 @@ void CompasCommand::getPath(Room * stairRoom)
 				Room* to = path[i];
 				Room* from = path[i - 1];
 
-				if (to->getEnemy()->isAlive()) {
+				if (to->hasEnemy()) {
 					enemiesHp.push_back(to->getEnemy()->getHealth());
 				}
 

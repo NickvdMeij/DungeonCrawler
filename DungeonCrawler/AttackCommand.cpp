@@ -26,6 +26,9 @@ void AttackCommand::Run(list<string>* parameters, Game * game) {
 		game->getPlayer()->getCurrentRoom()->getEnemy()->takeDamage(trueDamage);
 
 		if (game->getPlayer()->getCurrentRoom()->getEnemy()->getHealth() == 0) {
+			delete game->getPlayer()->getCurrentRoom()->getEnemy();
+			game->getPlayer()->getCurrentRoom()->setEnemy(nullptr);
+
 			std::cout << "The enemy has died!" << std::endl;
 			std::cout << "You recieved 200xp!" << std::endl;
 			game->getPlayer()->setExperience(game->getPlayer()->getExperience() + 200);

@@ -10,11 +10,13 @@ Room::Room(int x, int y)
 	xPosition = x;
 	yPosition = y;
 	visited = false;
+	trapped = false;
 }
 
 Room::Room()
 {
 	visited = false;
+	trapped = false;
 }
 
 Room::Room(const Room & other)
@@ -29,6 +31,7 @@ Room::Room(const Room & other)
 		enemy->setName(other.enemy->getName());
 		enemy->setIsAlive(other.enemy->isAlive());
 	}
+	trapped = other.trapped;
 	xPosition = other.xPosition;
 	yPosition = other.yPosition;
 	adjecentRooms = other.adjecentRooms;
@@ -51,6 +54,7 @@ Room& Room::operator=(const Room& other)
 		enemy->setName(other.enemy->getName());
 		enemy->setIsAlive(other.enemy->isAlive());
 	}
+	trapped = other.trapped;
 	xPosition = other.xPosition;
 	yPosition = other.yPosition;
 	adjecentRooms = other.adjecentRooms;
