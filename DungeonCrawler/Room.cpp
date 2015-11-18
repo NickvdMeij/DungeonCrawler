@@ -10,30 +10,25 @@ Room::Room(int x, int y)
 	xPosition = x;
 	yPosition = y;
 	visited = false;
-
-	enemy = new Enemy();
-	enemy->setIsAlive(false);
 }
 
 Room::Room()
 {
 	visited = false;
-
-	enemy = new Enemy();
-	enemy->setIsAlive(false);
 }
 
 Room::Room(const Room & other)
 {
 	//cout << "room copy constructor" << endl;
-
-	enemy = new Enemy();
-	enemy->setAttack(other.enemy->getAttack());
-	enemy->setDefence(other.enemy->getDefence());
-	enemy->setHealth(other.enemy->getHealth());
-	enemy->setName(other.enemy->getName());
-	enemy->setIsAlive(other.enemy->isAlive());
-
+	enemy = nullptr;
+	if (other.enemy != nullptr) {
+		enemy = new Enemy();
+		enemy->setAttack(other.enemy->getAttack());
+		enemy->setDefence(other.enemy->getDefence());
+		enemy->setHealth(other.enemy->getHealth());
+		enemy->setName(other.enemy->getName());
+		enemy->setIsAlive(other.enemy->isAlive());
+	}
 	xPosition = other.xPosition;
 	yPosition = other.yPosition;
 	adjecentRooms = other.adjecentRooms;
@@ -44,11 +39,44 @@ Room::Room(const Room & other)
 	furniture = other.furniture;
 }
 
+Room& Room::operator=(const Room& other)
+{
+	//cerr << "copy assignment\n";
+	enemy = nullptr;
+	if (other.enemy != nullptr) {
+		enemy = new Enemy();
+		enemy->setAttack(other.enemy->getAttack());
+		enemy->setDefence(other.enemy->getDefence());
+		enemy->setHealth(other.enemy->getHealth());
+		enemy->setName(other.enemy->getName());
+		enemy->setIsAlive(other.enemy->isAlive());
+	}
+	xPosition = other.xPosition;
+	yPosition = other.yPosition;
+	adjecentRooms = other.adjecentRooms;
+	visited = other.visited;
+	lighting = other.lighting;
+	size = other.size;
+	atmosfeer = other.atmosfeer;
+	furniture = other.furniture;
+	return *this;
+}
+
 Room::~Room()
 {
-	delete enemy;
-	enemy = nullptr;
+	if (enemy != nullptr) {
+		delete enemy;
+		enemy = nullptr;
+	}
+
 	//adjecentRooms.clear();
+}
+
+void Room::removeEnemy() {
+	if (enemy != nullptr) {
+		delete enemy;
+		enemy = nullptr;
+	}
 }
 
 string Room::GetDescripton()
@@ -239,22 +267,6 @@ void Room::CollapseDoorway(Direction direction)
 bool Room::isDoorwayCollapsed(Direction direction)
 {
 	return adjecentRooms[direction] == nullptr;	
-}
-
-Room & Room::operator=(const Room & other)
-{
-	if (this != &other) {
-		enemy = other.enemy;
-		xPosition = other.xPosition;
-		yPosition = other.yPosition;
-		size = other.size;
-		lighting = other.lighting;
-		atmosfeer = other.atmosfeer;
-		furniture = other.furniture;
-		adjecentRooms = other.adjecentRooms;
-		visited = other.visited;
-	}
-	return *this;
 }
 
 bool Room::operator==(const Room & other)

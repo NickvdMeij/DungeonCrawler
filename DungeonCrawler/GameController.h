@@ -1,7 +1,6 @@
 #pragma once
 #include "Game.h"
 #include "CommandFactory.h"
-#include "ItemFactory.h"
 
 class GameController
 {

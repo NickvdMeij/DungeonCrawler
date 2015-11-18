@@ -10,6 +10,7 @@ HelpCommand::HelpCommand()
 
 HelpCommand::~HelpCommand()
 {
+	cout << "delete helpCommand" << endl;
 }
 
 void HelpCommand::Run(list<string>* parameters, Game* game)

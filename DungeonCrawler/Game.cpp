@@ -17,11 +17,14 @@ Game::~Game()
 {
 	level = nullptr;
 
-	delete player;
-	player = nullptr;
-
 	delete lf;
 	lf = nullptr;
+
+	delete itemFactory;
+	itemFactory = nullptr;
+
+	delete player;
+	player = nullptr;
 }
 
 Player* Game::getPlayer()
@@ -58,7 +61,7 @@ void Game::InitialSetup()
 	lf = new LevelFactory();
 	level = lf->FirstLevel();
 
-	ItemFactory* itemFactory = new ItemFactory();
+	itemFactory = new ItemFactory();
 	Weapon* w = itemFactory->CreateWeapon(1);
 	Shield* s = itemFactory->CreateShield(1);
 	
@@ -72,8 +75,5 @@ void Game::InitialSetup()
 	player->setName("Derp");
 	player->setMainHand(w);
 	player->setOffHand(s);
-
-	//delete itemFactory;
-
 }
 

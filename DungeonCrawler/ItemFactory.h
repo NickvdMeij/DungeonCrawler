@@ -4,7 +4,6 @@
 #include "Weapon.h"
 #include "Shield.h"
 #include <vector>
-#include "Game.h"
 
 class ItemFactory
 {

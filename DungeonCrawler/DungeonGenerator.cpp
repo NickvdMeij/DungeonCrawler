@@ -173,16 +173,9 @@ Room DungeonGenerator::generateRandomRoom(int xPos, int yPos, int level)
 		room.setEnemy(enemy);
 	}
 	else {
-		Enemy* enemy = new Enemy();
-		enemy->setIsAlive(false);
-
-		room.setEnemy(enemy);
+		room.setEnemy(nullptr);
 	}
 
-	int difficulty = RandomInt::generateInt(1, 20);
-	room.setDifficulty(difficulty);
-
-	//0 tot 2 omdat je maar 3 opties zijn per kenmerk
 	int randomSize = RandomInt::generateInt(0, 5);
 	int randomLighting = RandomInt::generateInt(0, 8);
 	int randomFurniture = RandomInt::generateInt(0, 7);

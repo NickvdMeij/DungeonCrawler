@@ -10,13 +10,8 @@ Player::Player() :mainHand{ nullptr }, offHand{ nullptr }
 
 Player::~Player()
 {
-	
-	delete mainHand;
 	mainHand = nullptr;
-	
-	delete offHand;
 	offHand = nullptr;
-
 	currentRoom = nullptr;
 }
 

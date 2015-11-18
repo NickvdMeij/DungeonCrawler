@@ -11,6 +11,7 @@ LookCommand::LookCommand()
 
 LookCommand::~LookCommand()
 {
+	std::cout << "delete lookCommand" << std::endl;
 }
 
 void LookCommand::Run(list<string>* parameters, Game * game)

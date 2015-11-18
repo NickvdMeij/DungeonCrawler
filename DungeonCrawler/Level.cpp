@@ -57,6 +57,7 @@ void Level::chooseBossRoom()
 	//De boss - hoger base stats
 	Enemy* enemy = new Enemy();
 	int i = rnd.generateInt(0, 1);
+	bossRoom->removeEnemy();
 	if (i == 0) {
 		enemy->setIsAlive(true);
 		enemy->setName("Hill giant");

@@ -35,9 +35,8 @@ void AttackCommand::Run(list<string>* parameters, Game * game) {
 
 			if (dropChance >= random) {
 				int weaponShield = RandomInt::generateInt(0, 1);
-				ItemFactory* itemFact = new ItemFactory();
 				if (weaponShield) {
-					Weapon* weapon = itemFact->CreateWeapon(game->getPlayer()->getLevel());
+					Weapon* weapon = game->getItemFactory()->CreateWeapon(game->getPlayer()->getLevel());
 
 					std::cout << "The enemy dropped his weapon" << endl;
 					std::cout << "Weapon: " << weapon->getName() << " L" << weapon->getLevel() << endl;
@@ -71,7 +70,7 @@ void AttackCommand::Run(list<string>* parameters, Game * game) {
 
 				}
 				else {
-					Shield* shield = itemFact->CreateShield(game->getPlayer()->getLevel());
+					Shield* shield = game->getItemFactory()->CreateShield(game->getPlayer()->getLevel());
 
 					std::cout << "The enemy dropped his shield" << endl;
 					std::cout << "Shield: " << shield->getName() << " L" << shield->getLevel() << endl;
@@ -101,8 +100,6 @@ void AttackCommand::Run(list<string>* parameters, Game * game) {
 						}
 					}
 				}
-
-				delete itemFact;
 			}
 		}
 		else {
